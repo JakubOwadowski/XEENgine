@@ -2,13 +2,10 @@ package player
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.PerspectiveCamera
-import com.badlogic.gdx.math.Vector3
 import constants.CommonConstants
 import constants.DirectionsConstants
 import utils.Position
-import utils.interpolate
 import kotlin.math.sin
-import kotlin.times
 
 class Player private constructor() {
     val position = Position()
@@ -28,10 +25,6 @@ class Player private constructor() {
         camera.lookAt(position.x + facing.x, position.y, position.z + facing.z)
         camera.near = CommonConstants.CAMERA_NEAR
         camera.far = CommonConstants.CAMERA_FAR
-    }
-
-    fun getState(): PlayerStates {
-        return PlayerStates.WALKING_FORWARD
     }
 
     private fun startMovement(): Boolean {
@@ -110,14 +103,12 @@ class Player private constructor() {
         //move
         if (state in arrayOf(PlayerStates.WALKING_FORWARD, PlayerStates.WALKING_BACKWARD, PlayerStates.STRAFING_LEFT, PlayerStates.STRAFING_RIGHT)) {
             actionProgress += delta / CommonConstants.PLAYER_SPEED
-            position.x = interpolate(position.x, target.x, actionProgress)
-            position.z = interpolate(position.z, target.z, actionProgress)
+            position.set(position.cpy().lerp(target, actionProgress))
 
             if (actionProgress < 1f) {
                 bobbingAmount = sin((actionProgress * CommonConstants.BOBBING_SPEED * Math.PI.toFloat()).toDouble()) * CommonConstants.BOBBING_HEIGHT
             } else {
-                position.x = target.x
-                position.z = target.z
+                position.set(target)
                 state = PlayerStates.STANDING
                 busy = false
             }
@@ -126,7 +117,6 @@ class Player private constructor() {
         //turn
         else if (state in arrayOf(PlayerStates.TURNING_LEFT, PlayerStates.TURNING_RIGHT)) {
             actionProgress += delta / CommonConstants.PLAYER_SPEED
-
             facing.set(facing.cpy().lerp(target, actionProgress))
 
             if (actionProgress >= 1f) {
