@@ -1,8 +1,8 @@
-package xeen.src.main
+package xeengine.src.main
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
-import xeen.src.main.game.Game
+import xeengine.src.main.game.Game
 
 fun main() {
     val config = Lwjgl3ApplicationConfiguration()

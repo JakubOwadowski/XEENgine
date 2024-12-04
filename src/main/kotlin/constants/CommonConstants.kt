@@ -2,7 +2,7 @@ package constants
 
 object CommonConstants {
     @JvmStatic
-    val PLAYER_SPEED: Float = 2f
+    val PLAYER_STEP_SIZE: Float = 2f //one cell
     @JvmStatic
     val PLAYER_FOW: Float = 67f
     @JvmStatic
@@ -21,4 +21,6 @@ object CommonConstants {
     val WALL_WIDTH: Float = 0.01f
     @JvmStatic
     val FLOOR_LEVEL: Float = 0f
+    @JvmStatic
+    val PLAYER_SPEED = 0.15f
 }
