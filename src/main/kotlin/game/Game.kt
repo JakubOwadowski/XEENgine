@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g3d.*
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import constants.KeyboardConstants
+import globals.Globals
 import visual.Map
 import player.Player
 import maps.VertigoCityMap
@@ -22,7 +23,7 @@ class Game : ApplicationAdapter() {
     private lateinit var player: Player
 
     override fun create() {
-        map = VertigoCityMap
+        map = Globals.get().map
         modelBatch = ModelBatch()
         environment = Environment()
         environment.set(ColorAttribute.createAmbientLight(Color(100f, 100f, 100f, 1f)))
@@ -44,6 +45,7 @@ class Game : ApplicationAdapter() {
     }
 
     override fun render() {
+//        println("Player position: " + player.getXZPosition().x + " " + player.getXZPosition().z)
         if (!player.busy) {
             handleInput()
         }

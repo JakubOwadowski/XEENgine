@@ -14,22 +14,20 @@ fun mapMap(path: String): Map {
 
     for (y in 0 until height) {
         for (x in 0 until width) {
-            val argb = image.getRGB(x, y)
-            val alpha = (argb shr 24) and 0xFF
-            val red = (argb shr 16) and 0xFF
-            val green = (argb shr 8) and 0xFF
-            val blue = argb and 0xFF
+            val argb = image.getRGB(width - 1 - x, height - 1 - y)
+            val r = (argb shr 16) and 0xFF
+            val g = (argb shr 8) and 0xFF
+            val b = argb and 0xFF
 
-            // Check if the pixel is pure black
-            if (red == 0 && green == 0 && blue == 0) {
-                map.setCell(x, y, Cell(true, arrayOf(true, true, true, true)))
+            if (r == 0 && g == 0 && b == 0) {
+                map.setCell(x, y, Cell(true, arrayOf(true, true, true, true), false))
             }
-            // Check if the pixel is pure black
-            if (red == 255 && green == 0 && blue == 0) {
-                map.setCell(x, y, Cell(true, arrayOf(false, false, false, false)))
+            if (r == 255 && g == 0 && b == 0) {
+                map.setCell(x, y, Cell(true, arrayOf(false, false, false, false), true))
             }
         }
     }
+
 
     return map
 }

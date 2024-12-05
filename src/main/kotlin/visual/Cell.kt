@@ -20,13 +20,15 @@ class Cell {
     )
     private var sprites: MutableList<String> = mutableListOf()
     var hasRoof: Boolean = false
+    var passable = true
 
     constructor()
-    constructor(hasRoof: Boolean, walls: Array<Boolean>) {
+    constructor(hasRoof: Boolean, walls: Array<Boolean>, passable: Boolean) {
         this.hasRoof = hasRoof
         for (i: Int in 0 until walls.size) {
             this.walls[i].isPresent = walls[i]
         }
+        this.passable = passable
     }
 
     fun draw(x: Int, z: Int, instances: MutableList<ModelInstance>) {

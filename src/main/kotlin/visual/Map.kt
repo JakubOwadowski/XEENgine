@@ -1,7 +1,10 @@
 package visual
 
+import xeengine.src.main.utils.Coordinates
+
 class Map(width: Int, height: Int) {
     private var map: Array<Array<Cell>> = Array(width) { Array(height) { Cell() } }
+    var initCoordinates = Coordinates(0, 0)
 
     fun getCell(x: Int, y: Int): Cell {
         return map[x][y]

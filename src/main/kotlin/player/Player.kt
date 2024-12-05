@@ -3,28 +3,37 @@ package player
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.PerspectiveCamera
 import constants.CommonConstants
+import constants.CommonConstants.CAMERA_HEIGHT
+import constants.CommonConstants.CELL_SIZE
 import constants.DirectionsConstants
+import globals.Globals
 import utils.Position
+import xeengine.src.main.utils.Coordinates
 import kotlin.math.sin
 
 class Player private constructor() {
-    val position = Position()
+    private val position = Position()
     val facing = DirectionsConstants.NORTH.get()
     var camera: PerspectiveCamera
     var busy = false
     var actionProgress = 0f
     private var state = PlayerStates.STANDING
     private var target = Position()
+    private val map = Globals.get().map
 
     init {
-        position.x = 0f
-        position.y = 0.5f
-        position.z = 0f
+        position.x = map.initCoordinates.x * CELL_SIZE
+        position.y = CAMERA_HEIGHT
+        position.z = map.initCoordinates.z * CELL_SIZE
         camera = PerspectiveCamera(CommonConstants.PLAYER_FOW, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         camera.position.set(position.x, position.y, position.z)
         camera.lookAt(position.x + facing.x, position.y, position.z + facing.z)
         camera.near = CommonConstants.CAMERA_NEAR
         camera.far = CommonConstants.CAMERA_FAR
+    }
+
+    fun getXZPosition(): Coordinates {
+        return Coordinates((position.x / 2).toInt(), (position.z / 2).toInt())
     }
 
     private fun startMovement(): Boolean {
@@ -103,6 +112,18 @@ class Player private constructor() {
         //move
         if (state in arrayOf(PlayerStates.WALKING_FORWARD, PlayerStates.WALKING_BACKWARD, PlayerStates.STRAFING_LEFT, PlayerStates.STRAFING_RIGHT)) {
             actionProgress += delta / CommonConstants.PLAYER_SPEED
+
+            if (
+                target.x < 0 ||
+                target.z < 0 ||
+                target.x / CELL_SIZE > map.height() - 1 ||
+                target.z / CELL_SIZE > map.width() - 1 ||
+                !map.getCell((target.x / CELL_SIZE).toInt(), (target.z / CELL_SIZE).toInt()).passable) {
+                state = PlayerStates.STANDING
+                busy = false
+                return
+            }
+
             position.set(position.cpy().lerp(target, actionProgress))
 
             if (actionProgress < 1f) {
