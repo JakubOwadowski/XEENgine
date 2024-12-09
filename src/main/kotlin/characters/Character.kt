@@ -7,7 +7,7 @@ class Character {
     var name: String = ""
     var sex: CharacterSex = CharacterSex.Female
     var race: CharacterRace = CharacterRace.Human
-    var characterClass: CharacterClass = CharacterClass.Knight
+    var characterClass: CharacterClass = CharacterClasses.Knight
     var stats = CharacterStats()
     var armourClassBonus: Int = 0
     var level: Int = 0
@@ -19,7 +19,6 @@ class Character {
     //spells
     var lloydMap: Map? = null
     var lloydCoordinates: Coordinates = Coordinates(0, 0)
-    var hasSpells: Boolean = false
     //currentspell
     //quickoption
     //items

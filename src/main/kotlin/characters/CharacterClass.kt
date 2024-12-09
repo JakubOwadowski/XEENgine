@@ -1,6 +1,3 @@
 package xeengine.src.main.characters
 
-enum class CharacterClass {
-    Knight,
-    Paladin
-}
+class CharacterClass (val hpPerLevel: Int, val levelsPerAttack: Int, val skills: Array<CharacterSkill>, val hasSpells: Boolean)
