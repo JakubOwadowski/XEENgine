@@ -6,8 +6,8 @@ import xeengine.src.main.game.Game
 
 fun main() {
     val config = Lwjgl3ApplicationConfiguration()
-    config.setTitle("My Game")
-    config.setWindowedMode(800, 600)
+    config.setTitle("XEENgine")
+    config.setWindowedMode(856, 516)
     config.setResizable(true)
     Lwjgl3Application(Game(), config)
 }

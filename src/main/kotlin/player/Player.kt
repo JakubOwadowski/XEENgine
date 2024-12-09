@@ -118,7 +118,7 @@ class Player private constructor() {
                 target.z < 0 ||
                 target.x / CELL_SIZE > map.height() - 1 ||
                 target.z / CELL_SIZE > map.width() - 1 ||
-                !map.getCell((target.x / CELL_SIZE).toInt(), (target.z / CELL_SIZE).toInt()).passable) {
+                !map.getCell((target.x / CELL_SIZE).toInt(), 0, (target.z / CELL_SIZE).toInt()).passable) {
                 state = PlayerStates.STANDING
                 busy = false
                 return

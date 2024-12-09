@@ -1,14 +1,15 @@
 package visual
 
+import visual.models.FloorModel
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import constants.CommonConstants
-import visual.models.floorModel
-import visual.models.roofModel
-import visual.models.horizontalWallModel
-import visual.models.verticalWallModel
-import kotlin.collections.mutableListOf
+import visual.models.HorizontalWallModel
+import visual.models.RoofModel
+import visual.models.VerticalWallModel
+import xeengine.src.main.visual.models.visual.models.HorizontalTriangleWallModel
+import xeengine.src.main.visual.textures.TEXTURE_WALL
 import kotlin.random.Random
 
 class Cell {
@@ -18,85 +19,89 @@ class Cell {
         Wall(), //East
         Wall()  //South
     )
-    private var sprites: MutableList<String> = mutableListOf()
     var hasRoof: Boolean = false
+    var hasFloor: Boolean = true
     var passable = true
 
     constructor()
-    constructor(hasRoof: Boolean, walls: Array<Boolean>, passable: Boolean) {
+    constructor(hasRoof: Boolean, hasFloor: Boolean, walls: Array<Wall>, passable: Boolean) {
         this.hasRoof = hasRoof
+        this.hasFloor = hasFloor
         for (i: Int in 0 until walls.size) {
-            this.walls[i].isPresent = walls[i]
+            this.walls = walls
         }
         this.passable = passable
     }
 
-    fun draw(x: Int, z: Int, instances: MutableList<ModelInstance>) {
+    fun draw(x: Int, y: Int, z: Int, instances: MutableList<ModelInstance>) {
         // Render floor
-        val floorInstance = ModelInstance(floorModel)
+        val floorInstance = ModelInstance(FloorModel().model)
         val randomColor = Color(Random.nextFloat(), Random.nextFloat(), Random.nextFloat(), 1f)
         val xCoordinate = x.toFloat() * CommonConstants.CELL_SIZE
         val zCoordinate = z.toFloat() * CommonConstants.CELL_SIZE
+        val yCoordinate = y.toFloat() * CommonConstants.WALL_HEIGHT
 
-        //Render floor
-        floorInstance.materials.first().set(ColorAttribute.createDiffuse(randomColor))
-        floorInstance.transform.setToTranslation(
-            xCoordinate,
-            CommonConstants.FLOOR_LEVEL,
-            zCoordinate)
-        instances.add(floorInstance)
+        if (hasFloor) {
+            floorInstance.materials.first().set(ColorAttribute.createDiffuse(randomColor))
+            floorInstance.transform.setToTranslation(
+                xCoordinate,
+                CommonConstants.FLOOR_LEVEL + yCoordinate,
+                zCoordinate)
+            instances.add(floorInstance)
+        }
+
 
         // Render roof
         if (hasRoof) {
-            val roofInstance = ModelInstance(roofModel)
+            val roofInstance = ModelInstance(RoofModel().model)
             roofInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.WALL_HEIGHT,
+                CommonConstants.WALL_HEIGHT + yCoordinate,
                 zCoordinate)
             instances.add(roofInstance)
         }
 
         // Render walls
         if (walls[0].isPresent) {
-            val northRoofInstance = ModelInstance(horizontalWallModel)
+            val northRoofInstance = ModelInstance(HorizontalWallModel(TEXTURE_WALL).model)
             northRoofInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.WALL_HEIGHT / 2,
+                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
                 zCoordinate + CommonConstants.CELL_SIZE / 2)
             instances.add(northRoofInstance)
         }
 
         if (walls[1].isPresent) {
-            val westRoofInstance = ModelInstance(verticalWallModel)
+            val westRoofInstance = ModelInstance(VerticalWallModel(TEXTURE_WALL).model)
             westRoofInstance.transform.setToTranslation(
                 xCoordinate + CommonConstants.CELL_SIZE / 2,
-                CommonConstants.WALL_HEIGHT / 2,
+                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
                 zCoordinate)
             instances.add(westRoofInstance)
         }
 
         if (walls[2].isPresent) {
-            val westRoofInstance = ModelInstance(verticalWallModel)
+            val westRoofInstance = ModelInstance(VerticalWallModel(TEXTURE_WALL).model)
             westRoofInstance.transform.setToTranslation(
                 xCoordinate - CommonConstants.CELL_SIZE / 2,
-                CommonConstants.WALL_HEIGHT / 2,
+                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
                 zCoordinate)
             instances.add(westRoofInstance)
         }
 
         if (walls[3].isPresent) {
-            val southRoofInstance = ModelInstance(horizontalWallModel)
+            val southRoofInstance = ModelInstance(HorizontalWallModel(TEXTURE_WALL).model)
             southRoofInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.WALL_HEIGHT / 2,
+                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
                 zCoordinate - CommonConstants.CELL_SIZE / 2)
             instances.add(southRoofInstance)
         }
     }
 
     fun dispose() {
-        roofModel.dispose()
-        floorModel.dispose()
-        horizontalWallModel.dispose()
+        for (wall in walls) {
+
+        }
     }
 }

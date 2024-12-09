@@ -9,20 +9,27 @@ object CommonConstants {
     val CAMERA_NEAR = 0.1f
     @JvmStatic
     val CAMERA_FAR = 100f
+//    val CAMERA_FAR = 20f //OG
     @JvmStatic
     val CAMERA_HEIGHT = 0.5f
     @JvmStatic
     val BOBBING_SPEED: Float = 2f
+//    val BOBBING_SPEED: Float = 0f //OG
     @JvmStatic
     val BOBBING_HEIGHT: Float = 0.03f
+//    val BOBBING_HEIGHT: Float = 0f //OG
     @JvmStatic
     val CELL_SIZE: Float = 2f
     @JvmStatic
     val WALL_HEIGHT: Float = 1f
     @JvmStatic
-    val WALL_WIDTH: Float = 0.01f
+    val WALL_WIDTH: Float = 0.001f
     @JvmStatic
     val FLOOR_LEVEL: Float = 0f
     @JvmStatic
     val PLAYER_SPEED = 0.15f
+//    val PLAYER_SPEED = 0f //OG
+    @JvmStatic
+    val ALLOW_INPUT_CHAIN = false
+//    val ALLOW_INPUT_CHAIN = true //OG
 }

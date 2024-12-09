@@ -1,14 +1,21 @@
 package visual.models
 
-import com.badlogic.gdx.graphics.Color
-import com.badlogic.gdx.graphics.VertexAttributes
+import com.badlogic.gdx.graphics.VertexAttributes.Usage
 import com.badlogic.gdx.graphics.g3d.Material
-import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
-import constants.CommonConstants
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute
+import constants.CommonConstants.CELL_SIZE
+import constants.CommonConstants.WALL_HEIGHT
+import constants.CommonConstants.WALL_WIDTH
 import globals.Globals
 
-val verticalWallModel = Globals.get().modelBuilder.createBox(
-    CommonConstants.WALL_WIDTH, CommonConstants.WALL_HEIGHT, CommonConstants.CELL_SIZE,
-    Material(ColorAttribute.createDiffuse(Color.LIGHT_GRAY)),
-    (VertexAttributes.Usage.Position or VertexAttributes.Usage.Normal).toLong()
-)
+class VerticalWallModel(texture: TextureAttribute) {
+    val model = Globals.get().modelBuilder.createBox(
+        WALL_WIDTH, WALL_HEIGHT, CELL_SIZE,
+        Material(texture),
+        (Usage.Position or Usage.Normal or Usage.TextureCoordinates).toLong()
+    )
+
+    fun dispose() {
+        model.dispose()
+    }
+}
