@@ -1,12 +1,13 @@
 package xeengine.src.main.characters
 
 import visual.Map
+import xeengine.src.main.characters.characters.CharacterRaces
 import xeengine.src.main.utils.Coordinates
 
 class Character {
     var name: String = ""
     var sex: CharacterSex = CharacterSex.Female
-    var race: CharacterRace = CharacterRace.Human
+    var race: CharacterRace = CharacterRaces.Human
     var characterClass: CharacterClass = CharacterClasses.Knight
     var stats = CharacterStats()
     var armourClassBonus: Int = 0
@@ -14,7 +15,7 @@ class Character {
     var birthDay: Int = 0
     var birthYear: Int = 0
     var temporaryAge: Int = 0
-    //skills
+    var skills: MutableList<CharacterSkill> = ArrayList()
     //awards
     //spells
     var lloydMap: Map? = null

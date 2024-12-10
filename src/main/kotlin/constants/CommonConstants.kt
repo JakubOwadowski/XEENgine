@@ -32,4 +32,6 @@ object CommonConstants {
     @JvmStatic
     val ALLOW_INPUT_CHAIN = false
 //    val ALLOW_INPUT_CHAIN = true //OG
+    @JvmStatic
+    val LANGUAGE = "EN"
 }

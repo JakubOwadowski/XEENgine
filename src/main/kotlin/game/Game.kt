@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g3d.*
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
@@ -13,13 +14,14 @@ import constants.KeyboardConstants
 import globals.Globals
 import visual.Map
 import player.Player
+import xeengine.src.main.XeenTime.XeenTime
 
 class Game : ApplicationAdapter() {
     private lateinit var spriteBatch: SpriteBatch  // SpriteBatch for drawing the background
     private lateinit var skyTexture: Texture     // Texture for the sky
-    private lateinit var skybox: ModelInstance
     private lateinit var modelBatch: ModelBatch
     private lateinit var environment: Environment
+    private lateinit var debugFont: BitmapFont
 
     private lateinit var map: Map
 
@@ -31,17 +33,18 @@ class Game : ApplicationAdapter() {
     override fun create() {
         map = Globals.get().map
         modelBatch = ModelBatch()
-        spriteBatch = SpriteBatch()  // Initialize SpriteBatch
+        spriteBatch = SpriteBatch()
         environment = Environment()
         environment.set(ColorAttribute.createAmbientLight(Color(100f, 100f, 100f, 1f)))
 
         player = Player.get()
         player.camera.update()
 
-        // Load the sky texture (single image for the background)
-        skyTexture = Texture("src/main/resources/misc/skybox.png") // Replace with your sky image path
+        skyTexture = Texture("src/main/resources/misc/skybox.png")
+        debugFont = BitmapFont()
+        debugFont.color = Color.WHITE
+//        debugFont.data.setScale(1.5f)
 
-        // Generate the map and other elements
         generateMap()
 
         Gdx.input.inputProcessor = null
@@ -77,6 +80,26 @@ class Game : ApplicationAdapter() {
         instances.forEach { modelBatch.render(it, environment) }
         modelBatch.end()
 
+        spriteBatch.begin()
+        var debugText = "XEENgine " + Globals.get().version + "\n"
+        debugText += "Player position: X: " + player.getXZPosition().x + " Z " + player.getXZPosition().z + "\n"
+        debugText += "Current time: " + XeenTime.time + " (Year: " + XeenTime.getYear() + ", Month: " + XeenTime.getMonth() + ", Week: " + XeenTime.getWeek() + ", Day: " + XeenTime.getDayOfMonth().number + " - " + XeenTime.getDayOfMonth().name + " " + XeenTime.getHours() + ")\n"
+        debugText += "Map: " + Globals.get().map.name + "\n"
+        val xPosition = 10f // Adjust as needed
+        val yPosition = Gdx.graphics.height - 10f // Adjust as needed
+
+        // Draw black border (offset in all directions)
+        debugFont.color = Color.BLACK
+        debugFont.draw(spriteBatch, debugText, xPosition - 1, yPosition) // Left
+        debugFont.draw(spriteBatch, debugText, xPosition + 1, yPosition) // Right
+        debugFont.draw(spriteBatch, debugText, xPosition, yPosition - 1) // Down
+        debugFont.draw(spriteBatch, debugText, xPosition, yPosition + 1) // Up
+
+        // Draw white text on top
+        debugFont.color = Color.WHITE
+        debugFont.draw(spriteBatch, debugText, xPosition, yPosition)
+        spriteBatch.end()
+
         player.camera.update()
     }
 
@@ -106,9 +129,10 @@ class Game : ApplicationAdapter() {
 
     override fun dispose() {
         modelBatch.dispose()
-        spriteBatch.dispose()   // Dispose of SpriteBatch
-        skyTexture.dispose()    // Dispose of the sky texture
+        spriteBatch.dispose()
+        skyTexture.dispose()
         map.dispose()
+        debugFont.dispose()
     }
 }
 

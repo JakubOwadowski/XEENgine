@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
-fun mapMap(paths: Array<String>, width: Int, height: Int, levels: Int): Map {
+fun mapMap(name: String, paths: Array<String>, width: Int, height: Int, levels: Int): Map {
 
-    val map = Map(width, height, levels)
+    val map = Map(name, width, height, levels)
 
     for (y in 0 until levels) {
         val image: BufferedImage = ImageIO.read(File(paths[y]))

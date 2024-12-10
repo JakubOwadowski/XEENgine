@@ -10,7 +10,7 @@ import globals.Globals
 
 class HorizontalWallModel(texture: TextureAttribute) {
     val model = Globals.get().modelBuilder.createBox(
-        CELL_SIZE, WALL_HEIGHT, WALL_WIDTH,
+        CELL_SIZE + 2 * WALL_WIDTH, WALL_HEIGHT, WALL_WIDTH,
         Material(texture),
         (Usage.Position or Usage.Normal or Usage.TextureCoordinates).toLong()
     )

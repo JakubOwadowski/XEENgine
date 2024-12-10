@@ -5,7 +5,7 @@ import visual.Map
 import visual.mapMap
 import xeengine.src.main.utils.Coordinates
 
-val VertigoCityMap: Map = mapMap(arrayOf(
+val VertigoCityMap: Map = mapMap("Vertigo", arrayOf(
     "src/main/resources/maps/Vertigo.png",
 //    "src/main/resources/maps/Vertigo2.png"
 ),

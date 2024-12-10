@@ -8,6 +8,7 @@ import constants.CommonConstants.CELL_SIZE
 import constants.DirectionsConstants
 import globals.Globals
 import utils.Position
+import xeengine.src.main.XeenTime.XeenTime
 import xeengine.src.main.utils.Coordinates
 import kotlin.math.sin
 
@@ -132,6 +133,7 @@ class Player private constructor() {
                 position.set(target)
                 state = PlayerStates.STANDING
                 busy = false
+                XeenTime.time += 1
             }
         }
 

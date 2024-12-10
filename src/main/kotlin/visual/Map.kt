@@ -2,7 +2,7 @@ package visual
 
 import xeengine.src.main.utils.Coordinates
 
-class Map(width: Int, height: Int, levels: Int) {
+class Map(val name: String, width: Int, height: Int, levels: Int) {
     private var map: Array<Array<Array<Cell>>> = Array(levels) { Array(width) { Array(height) { Cell() } } }
     var initCoordinates = Coordinates(0, 0)
 
