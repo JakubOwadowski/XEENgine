@@ -16,6 +16,7 @@ import globals.Globals
 import visual.Map
 import player.Player
 import xeengine.src.main.XeenTime.XeenTime
+import xeengine.src.main.logger.Logger
 
 class Game : ApplicationAdapter() {
     private lateinit var spriteBatch: SpriteBatch
@@ -33,6 +34,7 @@ class Game : ApplicationAdapter() {
 
     override fun create() {
         map = Globals.get().map
+        Logger.initLog("Loaded map: ${map.name}", Game::class)
         modelBatch = ModelBatch()
         spriteBatch = SpriteBatch()
         environment = Environment()
