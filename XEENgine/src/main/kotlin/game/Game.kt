@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g3d.*
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import constants.CommonConstants.ALLOW_INPUT_CHAIN
+import constants.CommonConstants.ENABLE_DEBUG
 import constants.KeyboardConstants
 import globals.Globals
 import visual.Map
@@ -17,8 +18,8 @@ import player.Player
 import xeengine.src.main.XeenTime.XeenTime
 
 class Game : ApplicationAdapter() {
-    private lateinit var spriteBatch: SpriteBatch  // SpriteBatch for drawing the background
-    private lateinit var skyTexture: Texture     // Texture for the sky
+    private lateinit var spriteBatch: SpriteBatch
+    private lateinit var skyTexture: Texture
     private lateinit var modelBatch: ModelBatch
     private lateinit var environment: Environment
     private lateinit var debugFont: BitmapFont
@@ -40,10 +41,9 @@ class Game : ApplicationAdapter() {
         player = Player.get()
         player.camera.update()
 
-        skyTexture = Texture("src/main/resources/misc/skybox.png")
+        skyTexture = Texture("XEENgine/src/main/resources/misc/skybox.png")
         debugFont = BitmapFont()
         debugFont.color = Color.WHITE
-//        debugFont.data.setScale(1.5f)
 
         generateMap()
 
@@ -70,35 +70,17 @@ class Game : ApplicationAdapter() {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT or GL20.GL_DEPTH_BUFFER_BIT)
 
-        // Render the 2D sky image first using SpriteBatch
         spriteBatch.begin()
         spriteBatch.draw(skyTexture, 0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         spriteBatch.end()
 
-        // Now render the rest of the 3D scene
         modelBatch.begin(player.camera)
         instances.forEach { modelBatch.render(it, environment) }
         modelBatch.end()
 
-        spriteBatch.begin()
-        var debugText = "XEENgine " + Globals.get().version + "\n"
-        debugText += "Player position: X: " + player.getXZPosition().x + " Z " + player.getXZPosition().z + "\n"
-        debugText += "Current time: " + XeenTime.time + " (Year: " + XeenTime.getYear() + ", Month: " + XeenTime.getMonth() + ", Week: " + XeenTime.getWeek() + ", Day: " + XeenTime.getDayOfMonth().number + " - " + XeenTime.getDayOfMonth().name + " " + XeenTime.getHours() + ")\n"
-        debugText += "Map: " + Globals.get().map.name + "\n"
-        val xPosition = 10f // Adjust as needed
-        val yPosition = Gdx.graphics.height - 10f // Adjust as needed
-
-        // Draw black border (offset in all directions)
-        debugFont.color = Color.BLACK
-        debugFont.draw(spriteBatch, debugText, xPosition - 1, yPosition) // Left
-        debugFont.draw(spriteBatch, debugText, xPosition + 1, yPosition) // Right
-        debugFont.draw(spriteBatch, debugText, xPosition, yPosition - 1) // Down
-        debugFont.draw(spriteBatch, debugText, xPosition, yPosition + 1) // Up
-
-        // Draw white text on top
-        debugFont.color = Color.WHITE
-        debugFont.draw(spriteBatch, debugText, xPosition, yPosition)
-        spriteBatch.end()
+        if(ENABLE_DEBUG) {
+            drawDebug()
+        }
 
         player.camera.update()
     }
@@ -125,6 +107,26 @@ class Game : ApplicationAdapter() {
         } else {
             isKeyPressed = false
         }
+    }
+
+    private fun drawDebug() {
+        spriteBatch.begin()
+        var debugText = "XEENgine v" + Globals.get().version + "\n"
+        debugText += "Player position: X: " + player.getXZPosition().x + " Z " + player.getXZPosition().z + "\n"
+        debugText += "Current time: " + XeenTime.time + " (Year: " + XeenTime.getYear() + ", Month: " + XeenTime.getMonth() + ", Week: " + XeenTime.getWeek() + ", Day: " + XeenTime.getDayOfMonth().number + " - " + XeenTime.getDayOfMonth().name + " " + XeenTime.getHours() + ")\n"
+        debugText += "Map: " + Globals.get().map.name + "\n"
+        val xPosition = 10f
+        val yPosition = Gdx.graphics.height - 10f
+
+        debugFont.color = Color.BLACK
+        debugFont.draw(spriteBatch, debugText, xPosition - 1, yPosition)
+        debugFont.draw(spriteBatch, debugText, xPosition + 1, yPosition)
+        debugFont.draw(spriteBatch, debugText, xPosition, yPosition - 1)
+        debugFont.draw(spriteBatch, debugText, xPosition, yPosition + 1)
+
+        debugFont.color = Color.WHITE
+        debugFont.draw(spriteBatch, debugText, xPosition, yPosition)
+        spriteBatch.end()
     }
 
     override fun dispose() {

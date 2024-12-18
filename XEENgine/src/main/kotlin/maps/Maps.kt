@@ -6,8 +6,8 @@ import visual.mapMap
 import xeengine.src.main.utils.Coordinates
 
 val VertigoCityMap: Map = mapMap("Vertigo", arrayOf(
-    "src/main/resources/maps/Vertigo.png",
-//    "src/main/resources/maps/Vertigo2.png"
+    "XEENgine/src/main/resources/maps/Vertigo.png",
+//    "XEENgine/src/main/resources/maps/Vertigo2.png"
 ),
     32,
     32,
