@@ -12,15 +12,22 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import constants.CommonConstants.ALLOW_INPUT_CHAIN
 import constants.CommonConstants.ENABLE_DEBUG
 import constants.KeyboardConstants
-import globals.Globals
+import xeengine.src.main.globals.Globals
 import visual.Map
 import player.Player
 import xeengine.src.main.XeenTime.XeenTime
+import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_BOTTOM
+import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_LEFT
+import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_RIGHT
+import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_TOP
+import xeengine.src.main.constants.WindowDimensionConstants.WINDOW_HEIGHT
+import xeengine.src.main.constants.WindowDimensionConstants.WINDOW_WIDTH
 import xeengine.src.main.logger.Logger
 
 class Game : ApplicationAdapter() {
     private lateinit var spriteBatch: SpriteBatch
     private lateinit var skyTexture: Texture
+    private lateinit var frameTexture: Texture
     private lateinit var modelBatch: ModelBatch
     private lateinit var environment: Environment
     private lateinit var debugFont: BitmapFont
@@ -43,7 +50,8 @@ class Game : ApplicationAdapter() {
         player = Player.get()
         player.camera.update()
 
-        skyTexture = Texture("XEENgine/src/main/resources/misc/skybox.png")
+        skyTexture = Texture(map.skybox)
+        frameTexture = Texture("XEENgine/src/main/resources/misc/frame.png")
         debugFont = BitmapFont()
         debugFont.color = Color.WHITE
 
@@ -72,6 +80,8 @@ class Game : ApplicationAdapter() {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT or GL20.GL_DEPTH_BUFFER_BIT)
 
+        Gdx.gl.glViewport(GAME_WINDOW_OFFSET_LEFT,  GAME_WINDOW_OFFSET_BOTTOM - GAME_WINDOW_OFFSET_TOP, WINDOW_WIDTH - GAME_WINDOW_OFFSET_RIGHT, WINDOW_HEIGHT - GAME_WINDOW_OFFSET_BOTTOM)
+
         spriteBatch.begin()
         spriteBatch.draw(skyTexture, 0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         spriteBatch.end()
@@ -79,6 +89,12 @@ class Game : ApplicationAdapter() {
         modelBatch.begin(player.camera)
         instances.forEach { modelBatch.render(it, environment) }
         modelBatch.end()
+
+        Gdx.gl.glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
+
+        spriteBatch.begin()
+        spriteBatch.draw(frameTexture, 0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+        spriteBatch.end()
 
         if(ENABLE_DEBUG) {
             drawDebug()
@@ -135,8 +151,10 @@ class Game : ApplicationAdapter() {
         modelBatch.dispose()
         spriteBatch.dispose()
         skyTexture.dispose()
-        map.dispose()
         debugFont.dispose()
+        instances.forEach { instance ->
+            instance.model.dispose()
+        }
     }
 }
 

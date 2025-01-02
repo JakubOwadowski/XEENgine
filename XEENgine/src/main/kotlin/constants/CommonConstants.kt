@@ -4,14 +4,14 @@ object CommonConstants {
     @JvmStatic
     val PLAYER_STEP_SIZE: Float = 2f //one cell
     @JvmStatic
-    val PLAYER_FOW: Float = 100f
+    val PLAYER_FOW: Float = 80f
     @JvmStatic
-    val CAMERA_NEAR = 0.1f
+    val CAMERA_NEAR: Float = 0.1f
     @JvmStatic
-    val CAMERA_FAR = 100f
+    val CAMERA_FAR: Float = 100f
 //    val CAMERA_FAR = 20f //OG
     @JvmStatic
-    val CAMERA_HEIGHT = 0.5f
+    val CAMERA_HEIGHT: Float = 0.5f
     @JvmStatic
     val BOBBING_SPEED: Float = 2f
 //    val BOBBING_SPEED: Float = 0f //OG

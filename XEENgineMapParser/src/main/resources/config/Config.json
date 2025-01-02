@@ -1,0 +1,85 @@
+{
+  "name": "Vertigo",
+  "path": "maps/Vertigo.png",
+  "mappings": {
+    "255, 255, 255": {
+      "roof": {
+        "present": false
+      },
+      "floor": {
+        "present": true,
+        "texture": "floors/floor.png"
+      },
+      "walls": {
+        "north": {
+          "present": false
+        },
+        "west": {
+          "present": false
+        },
+        "east": {
+          "present": false
+        },
+        "south": {
+          "present": false
+        }
+      },
+      "passable": true
+    },
+    "0, 0, 0": {
+      "roof": {
+        "present": true,
+        "texture": ""
+      },
+      "floor": {
+        "present": true,
+        "texture": "floors/floor.png"
+      },
+      "walls": {
+        "north": {
+          "present": true,
+          "passable": false,
+          "texture": "TEXTURE_WALL"
+        },
+        "west": {
+          "present": true,
+          "texture": "TEXTURE_WALL"
+        },
+        "east": {
+          "present": true,
+          "texture": "TEXTURE_WALL"
+        },
+        "south": {
+          "present": true,
+          "texture": "TEXTURE_WALL"
+        }
+      },
+      "passable": false
+    },
+    "255, 0, 0": {
+      "roof": {
+        "present": true,
+        "texture": ""
+      },
+      "floor": {
+        "present": true,
+        "texture": "floors/floor.png"
+      },
+      "walls": {
+        "north": {
+          "present": false
+        },
+        "west": {
+          "present": false
+        },
+        "east": {
+          "present": false
+        },
+        "south": {
+          "present": false
+        }
+      },
+      "passable": true
+    }
+  }
+}

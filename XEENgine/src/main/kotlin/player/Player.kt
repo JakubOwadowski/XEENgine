@@ -6,7 +6,7 @@ import constants.CommonConstants
 import constants.CommonConstants.CAMERA_HEIGHT
 import constants.CommonConstants.CELL_SIZE
 import constants.DirectionsConstants
-import globals.Globals
+import xeengine.src.main.globals.Globals
 import utils.Position
 import xeengine.src.main.XeenTime.XeenTime
 import xeengine.src.main.utils.Coordinates
