@@ -8,10 +8,10 @@ import xeengine.src.main.game.Game
 import xeengine.src.main.logger.Logger
 
 fun main() {
-    val config = Lwjgl3ApplicationConfiguration()
+    val window = Lwjgl3ApplicationConfiguration()
     Logger.cleanLogs()
-    config.setTitle("XEENgine")
-    config.setWindowedMode(WINDOW_WIDTH, WINDOW_HEIGHT)
-    config.setResizable(false)
-    Lwjgl3Application(Game(), config)
+    window.setTitle("XEENgine")
+    window.setWindowedMode(WINDOW_WIDTH, WINDOW_HEIGHT)
+    window.setResizable(false)
+    Lwjgl3Application(Game(), window)
 }

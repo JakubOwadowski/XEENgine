@@ -1,4 +1,4 @@
-package xeengine.src.main.visual.models.visual.models
+package xeengine.src.main.visual.models
 
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Mesh

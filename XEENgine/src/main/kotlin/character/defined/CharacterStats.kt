@@ -1,4 +1,6 @@
-package xeengine.src.main.characters
+package xeengine.src.main.character.defined
+
+import xeengine.src.main.character.primitives.CharacterStat
 
 class CharacterStats {
     var might: CharacterStat = CharacterStat()

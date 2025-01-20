@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import constants.CommonConstants
-import maps.VertigoCityMap
+import maps.VERTIGO_CITY_MAP
 import xeengine.src.main.logger.Logger
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
 
 class Globals private constructor() {
     val modelBuilder = ModelBuilder()
-    val map = VertigoCityMap
+    val map = VERTIGO_CITY_MAP
     val version = getVersionFromPom()
     lateinit var localisation: Map<String, String>
 

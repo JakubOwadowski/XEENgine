@@ -1,10 +1,6 @@
-package xeengine.src.main.characters.characters
+package xeengine.src.main.character.defined
 
-import xeengine.src.main.characters.CharacterClass
-import xeengine.src.main.characters.CharacterClasses
-import xeengine.src.main.characters.CharacterRace
-import xeengine.src.main.characters.CharacterSkill
-import xeengine.src.main.characters.CharacterStats
+import xeengine.src.main.character.primitives.CharacterRace
 import xeengine.src.main.utils.LanguageUtil
 
 object CharacterRaces {
@@ -14,7 +10,7 @@ object CharacterRaces {
         0,
         0,
         arrayOf(),
-        arrayOf(CharacterSkill.Swimmer)
+        arrayOf(CharacterSkills.Swimmer)
     )
     val Elf = CharacterRace(
         LanguageUtil.get("character-race-elf-name"),
@@ -30,7 +26,7 @@ object CharacterRaces {
         5,
         -1,
         arrayOf(CharacterClasses.Sorcerer, CharacterClasses.Cleric),
-        arrayOf(CharacterSkill.SpotSecretDoors)
+        arrayOf(CharacterSkills.SpotSecretDoors)
     )
     val Gnome = CharacterRace(
         LanguageUtil.get("character-race-gnome-name"),
@@ -38,7 +34,7 @@ object CharacterRaces {
         10,
         1,
         arrayOf(CharacterClasses.Sorcerer, CharacterClasses.Cleric),
-        arrayOf(CharacterSkill.DangerSense)
+        arrayOf(CharacterSkills.DangerSense)
     )
     val HalfOrc = CharacterRace(
         LanguageUtil.get("character-race-half-orc-name"),

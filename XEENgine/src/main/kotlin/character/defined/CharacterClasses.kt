@@ -1,5 +1,6 @@
-package xeengine.src.main.characters
+package xeengine.src.main.character.defined
 
+import xeengine.src.main.character.primitives.CharacterClass
 import xeengine.src.main.utils.LanguageUtil
 
 object CharacterClasses {
@@ -10,7 +11,7 @@ object CharacterClasses {
         },
         10,
         5,
-        arrayOf(CharacterSkill.ArmsMaster),
+        arrayOf(CharacterSkills.ArmsMaster),
         false
     )
     val Paladin = CharacterClass(
@@ -22,7 +23,7 @@ object CharacterClasses {
         },
         8,
         6,
-        arrayOf(CharacterSkill.Crusader),
+        arrayOf(CharacterSkills.Crusader),
         true
     )
     val Archer = CharacterClass(
@@ -53,7 +54,7 @@ object CharacterClasses {
         },
         4,
         8,
-        arrayOf(CharacterSkill.Cartographer),
+        arrayOf(CharacterSkills.Cartographer),
         true
     )
     val Robber = CharacterClass(
@@ -63,7 +64,7 @@ object CharacterClasses {
         },
         8,
         6,
-        arrayOf(CharacterSkill.Thievery),
+        arrayOf(CharacterSkills.Thievery),
         false,
         30,
         2
@@ -76,7 +77,7 @@ object CharacterClasses {
         },
         7,
         5,
-        arrayOf(CharacterSkill.Thievery),
+        arrayOf(CharacterSkills.Thievery),
         false,
         30,
         2
@@ -99,7 +100,7 @@ object CharacterClasses {
         },
         6,
         7,
-        arrayOf(CharacterSkill.DirectionSense),
+        arrayOf(CharacterSkills.DirectionSense),
         true
     )
     val Ranger = CharacterClass(
@@ -112,7 +113,7 @@ object CharacterClasses {
         },
         9,
         6,
-        arrayOf(CharacterSkill.Pathfinder),
+        arrayOf(CharacterSkills.Pathfinder),
         true
     )
 }

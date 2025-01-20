@@ -1,6 +1,6 @@
-package xeengine.src.main.characters
+package xeengine.src.main.character.defined
 
-enum class CharacterSkill {
+enum class CharacterSkills {
     Thievery,
     Swimmer,
     Pathfinder,

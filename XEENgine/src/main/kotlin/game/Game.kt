@@ -129,10 +129,10 @@ class Game : ApplicationAdapter() {
 
     private fun drawDebug() {
         spriteBatch.begin()
-        var debugText = "XEENgine v" + Globals.get().version + "\n"
-        debugText += "Player position: X: " + player.getXZPosition().x + " Z " + player.getXZPosition().z + "\n"
-        debugText += "Current time: " + XeenTime.time + " (Year: " + XeenTime.getYear() + ", Month: " + XeenTime.getMonth() + ", Week: " + XeenTime.getWeek() + ", Day: " + XeenTime.getDayOfMonth().number + " - " + XeenTime.getDayOfMonth().name + " " + XeenTime.getHours() + ")\n"
-        debugText += "Map: " + Globals.get().map.name + "\n"
+        var debugText = "XEENgine v${Globals.get().version}\n"
+        debugText += "Player position: X: ${player.getXZPosition().x}, Z: ${player.getXZPosition().z}\n"
+        debugText += "Current time: ${XeenTime.time} (Year: ${XeenTime.getYear()}, Month: ${XeenTime.getMonth()}, Week: ${XeenTime.getWeek()}, Day: ${XeenTime.getDayOfMonth().number} - ${XeenTime.getDayOfMonth().name} ${XeenTime.getHours()})\n"
+        debugText += "Map: ${Globals.get().map.name}\n"
         val xPosition = 10f
         val yPosition = Gdx.graphics.height - 10f
 
