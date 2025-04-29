@@ -5,27 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42857892-c978-47b7-a063-e9c3e7299290" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/utils/MapLoader.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/Character.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/character/Character.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterClass.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterClasses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterRace.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterRace.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterSex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterSexes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterSkill.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterSkills.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterStat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterStat.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/CharacterStats.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterStats.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/characters/characters/CharacterRaces.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterRaces.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/Game.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/globals/Globals.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/globals/Globals.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/maps/Maps.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/maps/Maps.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/Cell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Cell.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/Map.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Map.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/MapMapper.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/Wall.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Wall.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/visual/models/HorizontalTriangleWallModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalTriangleWallModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/resources/sprites/floors/floor.png" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/resources/sprites/floors/floor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/FloorModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/FloorModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalWallModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalWallModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/VerticalWallModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/VerticalWallModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/resources/sprites/walls/wall.png" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/resources/sprites/walls/wall.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +43,7 @@
     &quot;Kotlin.XEENgineMapParser.executor&quot;: &quot;Run&quot;,
     &quot;Maven.XEENgine [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.XEENgine [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.XEENgine [install].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -95,6 +80,12 @@
       <recent name="xeengine.src.main.character.defined" />
       <recent name="xeengine.src.main.character.character" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn install" />
+    </option>
   </component>
   <component name="RunManager" selected="Kotlin.XEENgine">
     <configuration name="XEENgine" type="JetRunConfigurationType">
@@ -170,6 +161,9 @@
       <workItem from="1735903858989" duration="598000" />
       <workItem from="1736234230520" duration="12000" />
       <workItem from="1736431335487" duration="578000" />
+      <workItem from="1745849451241" duration="655000" />
+      <workItem from="1745907108333" duration="16000" />
+      <workItem from="1745933341123" duration="2107000" />
     </task>
     <servers />
   </component>
