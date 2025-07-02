@@ -9,19 +9,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g3d.*
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
-import constants.CommonConstants.ALLOW_INPUT_CHAIN
-import constants.CommonConstants.ENABLE_DEBUG
-import constants.KeyboardConstants
+import xeengine.src.main.common.constants.keys.KeyboardConstants
 import xeengine.src.main.globals.Globals
 import visual.Map
 import player.Player
 import xeengine.src.main.XeenTime.XeenTime
-import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_BOTTOM
-import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_LEFT
-import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_RIGHT
-import xeengine.src.main.constants.WindowDimensionConstants.GAME_WINDOW_OFFSET_TOP
-import xeengine.src.main.constants.WindowDimensionConstants.WINDOW_HEIGHT
-import xeengine.src.main.constants.WindowDimensionConstants.WINDOW_WIDTH
+import xeengine.src.main.common.constants.global.GlobalSettingsConstants.SETTING_ALLOW_INPUT_CHAINING
+import xeengine.src.main.common.constants.global.GlobalSettingsConstants.SETTING_ENABLE_DEBUG
+import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_BOTTOM
+import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_LEFT
+import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_RIGHT
+import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_TOP
+import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_HEIGHT
+import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_WIDTH
 import xeengine.src.main.logger.Logger
 
 class Game : ApplicationAdapter() {
@@ -80,7 +80,7 @@ class Game : ApplicationAdapter() {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT or GL20.GL_DEPTH_BUFFER_BIT)
 
-        Gdx.gl.glViewport(GAME_WINDOW_OFFSET_LEFT,  GAME_WINDOW_OFFSET_BOTTOM - GAME_WINDOW_OFFSET_TOP, WINDOW_WIDTH - GAME_WINDOW_OFFSET_RIGHT, WINDOW_HEIGHT - GAME_WINDOW_OFFSET_BOTTOM)
+        Gdx.gl.glViewport(WINDOW_OFFSET_LEFT,  WINDOW_OFFSET_BOTTOM - WINDOW_OFFSET_TOP, WINDOW_WIDTH - WINDOW_OFFSET_RIGHT, WINDOW_HEIGHT - WINDOW_OFFSET_BOTTOM)
 
         spriteBatch.begin()
         spriteBatch.draw(skyTexture, 0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
@@ -96,7 +96,7 @@ class Game : ApplicationAdapter() {
         spriteBatch.draw(frameTexture, 0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         spriteBatch.end()
 
-        if(ENABLE_DEBUG) {
+        if(SETTING_ENABLE_DEBUG) {
             drawDebug()
         }
 
@@ -105,22 +105,22 @@ class Game : ApplicationAdapter() {
 
     private fun handleInput() {
         if (Gdx.input.isKeyPressed(KeyboardConstants.KEY_W)) {
-            if (!ALLOW_INPUT_CHAIN || (!isKeyPressed && ALLOW_INPUT_CHAIN)) player.walkForward()
+            if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) player.walkForward()
             isKeyPressed = true
         } else if (Gdx.input.isKeyPressed(KeyboardConstants.KEY_S)) {
-            if (!ALLOW_INPUT_CHAIN || (!isKeyPressed && ALLOW_INPUT_CHAIN)) player.walkBackward()
+            if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) player.walkBackward()
             isKeyPressed = true
         } else if (Gdx.input.isKeyPressed(KeyboardConstants.KEY_D)) {
-            if (!ALLOW_INPUT_CHAIN || (!isKeyPressed && ALLOW_INPUT_CHAIN)) player.strafeRight()
+            if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) player.strafeRight()
             isKeyPressed = true
         } else if (Gdx.input.isKeyPressed(KeyboardConstants.KEY_A)) {
-            if (!ALLOW_INPUT_CHAIN || (!isKeyPressed && ALLOW_INPUT_CHAIN)) player.strafeLeft()
+            if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) player.strafeLeft()
             isKeyPressed = true
         } else if (Gdx.input.isKeyPressed(KeyboardConstants.KEY_Q)) {
-            if (!ALLOW_INPUT_CHAIN || (!isKeyPressed && ALLOW_INPUT_CHAIN)) player.turnRight()
+            if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) player.turnRight()
             isKeyPressed = true
         } else if (Gdx.input.isKeyPressed(KeyboardConstants.KEY_E)) {
-            if (!ALLOW_INPUT_CHAIN || (!isKeyPressed && ALLOW_INPUT_CHAIN)) player.turnLeft()
+            if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) player.turnLeft()
             isKeyPressed = true
         } else {
             isKeyPressed = false

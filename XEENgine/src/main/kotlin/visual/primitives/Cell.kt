@@ -2,8 +2,9 @@ package visual
 
 import visual.models.FloorModel
 import com.badlogic.gdx.graphics.g3d.ModelInstance
-import constants.CommonConstants
+import constants.MapDimensionsConstants
 import visual.models.RoofModel
+import xeengine.src.main.common.constants.global.GlobalCameraConstants.CAMERA_FLOOR_LEVEL
 import xeengine.src.main.visual.textures.Textures
 
 class Cell constructor() {
@@ -22,14 +23,14 @@ class Cell constructor() {
 
 
     fun draw(x: Int, y: Int, z: Int, instances: MutableList<ModelInstance>) {
-        val xCoordinate = x.toFloat() * CommonConstants.CELL_SIZE
-        val zCoordinate = z.toFloat() * CommonConstants.CELL_SIZE
-        val yCoordinate = y.toFloat() * CommonConstants.WALL_HEIGHT
+        val xCoordinate = x.toFloat() * MapDimensionsConstants.MAP_CELL_SIZE
+        val zCoordinate = z.toFloat() * MapDimensionsConstants.MAP_CELL_SIZE
+        val yCoordinate = y.toFloat() * MapDimensionsConstants.MAP_WALL_HEIGHT
 
         if (hasFloor) {
             floorInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.FLOOR_LEVEL + yCoordinate,
+                CAMERA_FLOOR_LEVEL + yCoordinate,
                 zCoordinate)
             instances.add(floorInstance)
         }
@@ -37,7 +38,7 @@ class Cell constructor() {
         if (hasRoof) {
             roofInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.WALL_HEIGHT + yCoordinate,
+                MapDimensionsConstants.MAP_WALL_HEIGHT + yCoordinate,
                 zCoordinate)
             instances.add(roofInstance)
         }
@@ -46,16 +47,16 @@ class Cell constructor() {
             val northRoofInstance = walls[0].model
             northRoofInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
-                zCoordinate + CommonConstants.CELL_SIZE / 2)
+                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate + MapDimensionsConstants.MAP_CELL_SIZE / 2)
             instances.add(northRoofInstance)
         }
 
         if (walls[1].isPresent) {
             val westRoofInstance = walls[1].model
             westRoofInstance.transform.setToTranslation(
-                xCoordinate + CommonConstants.CELL_SIZE / 2,
-                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
+                xCoordinate + MapDimensionsConstants.MAP_CELL_SIZE / 2,
+                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
                 zCoordinate)
             instances.add(westRoofInstance)
         }
@@ -63,8 +64,8 @@ class Cell constructor() {
         if (walls[2].isPresent) {
             val eastRoofInstance = walls[2].model
             eastRoofInstance.transform.setToTranslation(
-                xCoordinate - CommonConstants.CELL_SIZE / 2,
-                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
+                xCoordinate - MapDimensionsConstants.MAP_CELL_SIZE / 2,
+                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
                 zCoordinate)
             instances.add(eastRoofInstance)
         }
@@ -73,8 +74,8 @@ class Cell constructor() {
             val southRoofInstance = walls[3].model
             southRoofInstance.transform.setToTranslation(
                 xCoordinate,
-                CommonConstants.WALL_HEIGHT / 2 + yCoordinate,
-                zCoordinate - CommonConstants.CELL_SIZE / 2)
+                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate - MapDimensionsConstants.MAP_CELL_SIZE / 2)
             instances.add(southRoofInstance)
         }
     }

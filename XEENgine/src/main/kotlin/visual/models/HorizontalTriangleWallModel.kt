@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.VertexAttributes
 import com.badlogic.gdx.graphics.g3d.Material
 import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute
-import constants.CommonConstants.CELL_SIZE
-import constants.CommonConstants.WALL_HEIGHT
+import constants.MapDimensionsConstants.MAP_CELL_SIZE
+import constants.MapDimensionsConstants.MAP_WALL_HEIGHT
 import xeengine.src.main.globals.Globals
 
 class HorizontalTriangleWallModel(texture: TextureAttribute) {
@@ -18,9 +18,9 @@ class HorizontalTriangleWallModel(texture: TextureAttribute) {
         val builder = Globals.get().modelBuilder
 
         val vertices = floatArrayOf(
-            -CELL_SIZE/2, -WALL_HEIGHT/2, 0f,    0f, 0f, 1f, 0f, 0f,
-            CELL_SIZE/2, -WALL_HEIGHT/2, 0f,    0f, 0f, 1f, 1f, 0f,
-            -CELL_SIZE/2, WALL_HEIGHT/2, 0f,    0f, 0f, 1f, 0f, 1f
+            -MAP_CELL_SIZE/2, -MAP_WALL_HEIGHT/2, 0f,    0f, 0f, 1f, 0f, 0f,
+            MAP_CELL_SIZE/2, -MAP_WALL_HEIGHT/2, 0f,    0f, 0f, 1f, 1f, 0f,
+            -MAP_CELL_SIZE/2, MAP_WALL_HEIGHT/2, 0f,    0f, 0f, 1f, 0f, 1f
         )
 
         val indices = shortArrayOf(
