@@ -1,4 +1,4 @@
-package player
+package player.enums
 
 enum class PlayerStates {
     STANDING,

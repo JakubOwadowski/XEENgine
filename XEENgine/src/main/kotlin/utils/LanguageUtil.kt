@@ -1,6 +1,6 @@
 package xeengine.src.main.utils
 
-import xeengine.src.main.globals.Globals
+import xeengine.src.main.common.globals.Globals
 
 class LanguageUtil {
     companion object {

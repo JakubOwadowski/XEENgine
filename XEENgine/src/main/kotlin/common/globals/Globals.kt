@@ -1,12 +1,11 @@
-package xeengine.src.main.globals
+package xeengine.src.main.common.globals
 
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import constants.MapDimensionsConstants
-import maps.VERTIGO_CITY_MAP
-import xeengine.src.main.common.settings.settings.Settings
-import xeengine.src.main.logger.Logger
+import maps.common.VERTIGO_CITY_MAP
+import xeengine.src.main.common.settings.common.Settings
+import xeengine.src.main.common.logger.Logger
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
 

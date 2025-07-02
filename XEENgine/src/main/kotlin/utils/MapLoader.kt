@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import visual.models.FloorModel
 import visual.models.HorizontalWallModel
 import visual.models.VerticalWallModel
-import xeengine.src.main.logger.Logger
+import xeengine.src.main.common.logger.Logger
 import xeengine.src.main.visual.textures.Textures
 import java.io.File
 

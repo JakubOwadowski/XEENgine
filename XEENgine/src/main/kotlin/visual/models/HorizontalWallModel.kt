@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute
 import com.badlogic.gdx.graphics.g3d.attributes.IntAttribute
 import constants.MapDimensionsConstants.MAP_CELL_SIZE
 import constants.MapDimensionsConstants.MAP_WALL_HEIGHT
-import xeengine.src.main.globals.Globals
+import xeengine.src.main.common.globals.Globals
 
 class HorizontalWallModel(texture: TextureAttribute) {
     val model = Globals.get().modelBuilder.createRect(

@@ -4,9 +4,8 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.VertexAttributes.Usage
 import com.badlogic.gdx.graphics.g3d.Material
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
-import com.badlogic.gdx.math.Vector3
 import constants.MapDimensionsConstants.MAP_CELL_SIZE
-import xeengine.src.main.globals.Globals
+import xeengine.src.main.common.globals.Globals
 
 class RoofModel(/*texture: TextureAttribute*/) {
     val model = Globals.get().modelBuilder.createRect(

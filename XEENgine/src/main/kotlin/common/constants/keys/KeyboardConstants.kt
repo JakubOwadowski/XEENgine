@@ -1,12 +1,12 @@
 package xeengine.src.main.common.constants.keys
 
-import com.badlogic.gdx.Input
+import xeengine.src.main.common.settings.common.Settings
 
 object KeyboardConstants {
-    const val KEY_W: Int = Input.Keys.W
-    const val KEY_S: Int = Input.Keys.S
-    const val KEY_A: Int = Input.Keys.A
-    const val KEY_D: Int = Input.Keys.D
-    const val KEY_Q: Int = Input.Keys.Q
-    const val KEY_E: Int = Input.Keys.E
+    val KEY_FORWARD: Int = Settings.keyForward
+    val KEY_BACKWARD: Int = Settings.keyBackward
+    val KEY_MOVE_LEFT: Int = Settings.keyMoveLeft
+    val KEY_MOVE_RIGHT: Int = Settings.keyMoveRight
+    val KEY_ROTATE_LEFT: Int = Settings.keyRotateLeft
+    val KEY_ROTATE_RIGHT: Int = Settings.keyRotateRight
 }

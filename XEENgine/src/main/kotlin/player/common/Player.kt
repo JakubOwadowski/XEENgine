@@ -1,10 +1,11 @@
-package player
+package player.common
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.PerspectiveCamera
 import constants.MapDimensionsConstants.MAP_CELL_SIZE
+import player.enums.PlayerStates
 import xeengine.src.main.common.constants.global.GlobalDirectionsConstants
-import xeengine.src.main.globals.Globals
+import xeengine.src.main.common.globals.Globals
 import utils.Position
 import xeengine.src.main.XeenTime.XeenTime
 import xeengine.src.main.common.constants.global.GlobalCameraConstants.CAMERA_BOBBING_HEIGHT

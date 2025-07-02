@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute
 import constants.MapDimensionsConstants.MAP_CELL_SIZE
 import constants.MapDimensionsConstants.MAP_WALL_HEIGHT
-import xeengine.src.main.globals.Globals
+import xeengine.src.main.common.globals.Globals
 
 class HorizontalTriangleWallModel(texture: TextureAttribute) {
     val model: Model

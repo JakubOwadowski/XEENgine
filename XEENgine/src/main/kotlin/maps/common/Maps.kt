@@ -1,12 +1,12 @@
-package maps
+package maps.common
 
 import visual.Map
 import visual.MapLoader
 import xeengine.src.main.utils.Coordinates
 
-val VERTIGO_CITY_MAP: Map = MapLoader.loadMap("Vertigo", arrayOf(
-    "XEENgine/src/main/resources/maps/Vertigo.json",
-),
+val VERTIGO_CITY_MAP: Map = MapLoader.loadMap(
+    "Vertigo",
+    arrayOf("XEENgine/src/main/resources/maps/Vertigo.json"),
     32,
     32,
     1,

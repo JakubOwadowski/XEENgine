@@ -1,4 +1,4 @@
-package xeengine.src.main.logger
+package xeengine.src.main.common.logger
 
 import java.io.File
 import java.time.LocalDateTime

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g3d.Material
 import com.badlogic.gdx.graphics.g3d.attributes.IntAttribute
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute
 import constants.MapDimensionsConstants.MAP_CELL_SIZE
-import xeengine.src.main.globals.Globals
+import xeengine.src.main.common.globals.Globals
 
 class FloorModel(texture: TextureAttribute) {
     val model = Globals.get().modelBuilder.createRect(

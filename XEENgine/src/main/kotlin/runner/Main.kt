@@ -1,12 +1,12 @@
-package xeengine.src.main
+package xeengine.src.main.runner
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_TITLE
 import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_HEIGHT
 import xeengine.src.main.common.constants.global.GlobalWindowConstants.WINDOW_WIDTH
-import xeengine.src.main.game.Game
-import xeengine.src.main.logger.Logger
+import xeengine.src.main.game.common.Game
+import xeengine.src.main.common.logger.Logger
 
 fun main() {
     val window = Lwjgl3ApplicationConfiguration()
