@@ -7,7 +7,7 @@ import visual.models.RoofModel
 import xeengine.src.main.common.constants.global.GlobalCameraConstants.CAMERA_FLOOR_LEVEL
 import xeengine.src.main.visual.textures.Textures
 
-class Cell constructor() {
+class Cell {
     var walls = arrayOf<Wall>(
         Wall(), //North
         Wall(), //West

@@ -11,25 +11,49 @@ class XeenTime {
         var time: Long = 864000000
 
         fun getYear(): Int  {
-            return (time / (TIME_HOURS_PER_DAY * TIME_MINUTES_PER_HOUR * TIME_NUMBER_OF_MONTHS * TIME_NUMBER_OF_WEEKS * TIME_NUMBER_OF_DAYS)).toInt()
+            val daysInAYear = TIME_HOURS_PER_DAY *
+                    TIME_MINUTES_PER_HOUR *
+                    TIME_NUMBER_OF_MONTHS *
+                    TIME_NUMBER_OF_WEEKS *
+                    TIME_NUMBER_OF_DAYS
+
+            val year = (time / daysInAYear).toInt()
+
+            return year
         }
 
         fun getMonth(): Int {
-            return ((time / (TIME_HOURS_PER_DAY * TIME_MINUTES_PER_HOUR * TIME_NUMBER_OF_WEEKS * TIME_NUMBER_OF_MONTHS)).toInt())%TIME_NUMBER_OF_MONTHS + 1
+            val daysInAMonth = TIME_HOURS_PER_DAY *
+                    TIME_MINUTES_PER_HOUR *
+                    TIME_NUMBER_OF_WEEKS *
+                    TIME_NUMBER_OF_MONTHS
+
+            val month = ((time / daysInAMonth).toInt()) % TIME_NUMBER_OF_MONTHS + 1
+
+            return month
         }
 
         fun getWeek(): Int {
-            return ((time / (TIME_HOURS_PER_DAY * TIME_MINUTES_PER_HOUR * TIME_NUMBER_OF_MONTHS)).toInt())%TIME_NUMBER_OF_WEEKS + 1
+            val daysInWeek = TIME_HOURS_PER_DAY *
+                    TIME_MINUTES_PER_HOUR *
+                    TIME_NUMBER_OF_MONTHS
+
+            return ((time / daysInWeek).toInt()) % TIME_NUMBER_OF_WEEKS + 1
         }
 
         fun getHours(): String {
+            var result = ""
+
             var hours = ((time / TIME_MINUTES_PER_HOUR) % TIME_HOURS_PER_DAY).toInt() + 1
             val minutes = (time % TIME_MINUTES_PER_HOUR).toInt()
+
             if (hours > 12) {
                 hours -= 12
-                return hours.toString() + ":" + String.format("%02d", minutes) + "PM"
+                result = hours.toString() + ":" + String.format("%02d", minutes) + "PM"
             }
-            return hours.toString() + ":" + String.format("%02d", minutes) + "AM"
+            result = hours.toString() + ":" + String.format("%02d", minutes) + "AM"
+
+            return result
         }
 
         fun getDayOfMonth(): XeenDay {

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import player.common.Player
 import visual.Map
-import xeengine.src.main.common.constants.keys.KeyboardConstants
+import xeengine.src.main.common.settings.common.Settings
 
 fun generateMap(map: Map, instances: MutableList<ModelInstance>) {
     for (y in map.getLevelIndices()) {
@@ -20,12 +20,12 @@ fun handleInput(player: Player): Boolean {
     var isKeyPressed = true
 
     when {
-        Gdx.input.isKeyPressed(KeyboardConstants.KEY_FORWARD) -> player.walkForward()
-        Gdx.input.isKeyPressed(KeyboardConstants.KEY_BACKWARD) -> player.walkBackward()
-        Gdx.input.isKeyPressed(KeyboardConstants.KEY_MOVE_RIGHT) -> player.strafeRight()
-        Gdx.input.isKeyPressed(KeyboardConstants.KEY_MOVE_LEFT) -> player.strafeLeft()
-        Gdx.input.isKeyPressed(KeyboardConstants.KEY_ROTATE_LEFT) -> player.turnRight()
-        Gdx.input.isKeyPressed(KeyboardConstants.KEY_ROTATE_RIGHT) -> player.turnLeft()
+        Gdx.input.isKeyPressed(Settings.keyForward) -> player.walkForward()
+        Gdx.input.isKeyPressed(Settings.keyBackward) -> player.walkBackward()
+        Gdx.input.isKeyPressed(Settings.keyMoveRight) -> player.strafeRight()
+        Gdx.input.isKeyPressed(Settings.keyMoveLeft) -> player.strafeLeft()
+        Gdx.input.isKeyPressed(Settings.keyRotateLeft) -> player.turnRight()
+        Gdx.input.isKeyPressed(Settings.keyRotateRight) -> player.turnLeft()
         else -> isKeyPressed = false
     }
 

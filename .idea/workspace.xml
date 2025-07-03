@@ -5,32 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42857892-c978-47b7-a063-e9c3e7299290" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/global/GlobalDebugConstants.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/settings/common/Settings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/debugger/Debugger.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/utils/GameUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/map/MapObjectsConstants.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/runner/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/global/GlobalSettingsConstants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/global/GlobalSettingsConstants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/keys/KeyboardConstants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/keys/KeyboardConstants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/settings/common/Setting.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/settings/settings/Settings.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/common/Game.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/globals/Globals.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/globals/Globals.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/logger/Logger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/logger/Logger.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/maps/Maps.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/maps/common/Maps.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/player/Player.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/player/common/Player.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/player/PlayerStates.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/player/enums/PlayerStates.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/utils/LanguageUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/utils/LanguageUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterStats.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/defined/CharacterStats.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterClass.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterRace.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterRace.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterStat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/character/primitives/CharacterStat.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/global/GlobalDebugConstants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/global/GlobalDebugConstants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/common/constants/keys/KeyboardConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/debugger/Debugger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/debugger/Debugger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/utils/GameUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/game/utils/GameUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/player/common/Player.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/player/common/Player.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenDay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenDay.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenTime.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenTime.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/utils/MapLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/utils/MapLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/FloorModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/FloorModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalTriangleWallModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalTriangleWallModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalWallModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/HorizontalWallModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/RoofModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/RoofModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/VerticalWallModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/models/VerticalWallModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/xeenTime/XeenDay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenDay.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/xeenTime/XeenDays.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenDays.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/xeenTime/XeenTime.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/time/XeenTime.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Cell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Cell.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Map.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Map.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Wall.kt" beforeDir="false" afterPath="$PROJECT_DIR$/XEENgine/src/main/kotlin/visual/primitives/Wall.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +123,16 @@
       <option name="workspaceLocation" value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="LiferayServerConfiguration" factoryName="Liferay Server">
+      <Liferay-Sever alternativeJrePath="" bundleLocation="" bundleType="" developerMode="true" gogoShellPort="11311" vmParameters="-Xmx2560m -XX:MaxMetaspaceSize=768m -XX:MetaspaceSize=768m">
+        <envs>
+          <env name="PATH" value="$USER_HOME$/.jdks/temurin-17.0.11/bin:C:\Python312\Scripts\;C:\Python312\;C:\Program Files\Java\jdk-11\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\PuTTY\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Maven\apache-maven-3.9.6\bin;C:\Program Files\nodejs\;C:\Users\jakub.owadowski\AppData\Local\Microsoft\WindowsApps;C:\Users\jakub.owadowski\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jakub\AppData\Local\GitHubDesktop\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2024.2.4\bin;" />
+          <env name="JAVA_HOME" value="$USER_HOME$/.jdks/temurin-17.0.11" />
+        </envs>
+        <module name="XEENgine" />
+      </Liferay-Sever>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Kotlin.XEENgine" />
       <item itemvalue="Kotlin.XEENgineMapParser" />
@@ -180,7 +181,8 @@
       <workItem from="1745993254137" duration="4000" />
       <workItem from="1745993274715" duration="91000" />
       <workItem from="1751450314848" duration="4686000" />
-      <workItem from="1751458451013" duration="2638000" />
+      <workItem from="1751458451013" duration="2728000" />
+      <workItem from="1751524723301" duration="4235000" />
     </task>
     <servers />
   </component>

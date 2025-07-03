@@ -1,6 +1,6 @@
 package xeengine.src.main.common.constants.global
 
-import com. badlogic. gdx. graphics. Color
+import com.badlogic.gdx.graphics.Color
 
 object GlobalDebugConstants {
     const val DEBUG_ENABLE: Boolean = true

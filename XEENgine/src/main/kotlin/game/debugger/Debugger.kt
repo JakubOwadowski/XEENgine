@@ -20,12 +20,16 @@ class Debugger {
 
     fun drawDebug(spriteBatch: SpriteBatch, player: Player) {
         spriteBatch.begin()
-        var debugText = """
-            XEENgine v${Globals.get().version}
-            Player position: X: ${player.getXZPosition().x}, Z: ${player.getXZPosition().z}
-            Current time: ${XeenTime.time} (Year: ${XeenTime.getYear()}, Month: ${XeenTime.getMonth()}, Week: ${XeenTime.getWeek()}, Day: ${XeenTime.getDayOfMonth().number} - ${XeenTime.getDayOfMonth().name} ${XeenTime.getHours()})
-            Map: ${Globals.get().map.name}
-        """.trimIndent()
+        var debugText = "XEENgine v${Globals.get().version}\n" +
+                "Player position:" +
+                "X: ${player.getXZPosition().x}, " +
+                "Z: ${player.getXZPosition().z}\n" +
+                "Current time: ${XeenTime.time}" +
+                "(Year: ${XeenTime.getYear()}, " +
+                "Month: ${XeenTime.getMonth()}, " +
+                "Week: ${XeenTime.getWeek()}, " +
+                "Day: ${XeenTime.getDayOfMonth().number} - ${XeenTime.getDayOfMonth().name} ${XeenTime.getHours()})\n" +
+                "Map: ${Globals.get().map.name}"
 
         val xPosition = DEBUG_OFFSET_X
         val yPosition = Gdx.graphics.height - DEBUG_OFFSET_Y

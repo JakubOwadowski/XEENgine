@@ -2,7 +2,13 @@ package visual
 
 import xeengine.src.main.utils.Coordinates
 
-class Map(val name: String, width: Int, height: Int, levels: Int, val skybox: String) {
+class Map(
+    val name: String,
+    width: Int,
+    height: Int,
+    levels: Int,
+    val skybox: String
+) {
     private var map: Array<Array<Array<Cell>>> = Array(levels) { Array(width) { Array(height) { Cell() } } }
     var initCoordinates = Coordinates(0, 0)
 
