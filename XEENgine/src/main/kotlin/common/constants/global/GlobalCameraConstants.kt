@@ -1,13 +1,16 @@
 package xeengine.src.main.common.constants.global
 
+import common.settings.enums.CameraEnum.FLUID
+import xeengine.src.main.common.settings.common.Settings
+
 object GlobalCameraConstants {
     const val CAMERA_FOW: Float = 80f
     const val CAMERA_NEAR: Float = 0.1f
-    const val CAMERA_FAR: Float = 100f //20f
+    val CAMERA_FAR: Float = if (Settings.camera == FLUID) 100f else 20f
     const val CAMERA_HEIGHT: Float = 0.5f
-    const val CAMERA_MOVING_TIME = 0.15f //0f
+    val CAMERA_MOVING_TIME = if (Settings.camera == FLUID) 0.15f else 0f
     const val CAMERA_FLOOR_LEVEL: Float = 0f
     const val CAMERA_STEP_SIZE: Float = 2f //one cell
-    const val CAMERA_BOBBING_TIME: Float = 2f //0f
-    const val CAMERA_BOBBING_HEIGHT: Float = 0.03f //0f
+    val CAMERA_BOBBING_TIME: Float = if (Settings.camera == FLUID) 2f else 0f
+    val CAMERA_BOBBING_HEIGHT: Float = if (Settings.camera == FLUID) 0.03f else 0f
 }
