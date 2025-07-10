@@ -1,6 +1,6 @@
 package xeengine.common.settings.enums
 
-enum class CameraEnum {
+enum class SettingCameraEnum {
     CLASSIC,
     FLUID
 }

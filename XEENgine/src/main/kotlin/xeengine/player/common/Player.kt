@@ -96,7 +96,7 @@ class Player private constructor() {
         )
     }
 
-    fun strafeRight() {
+    fun moveRight() {
         if (busy) return
         busy = true
         actionProgress = 0f
@@ -108,7 +108,7 @@ class Player private constructor() {
         )
     }
 
-    fun strafeLeft() {
+    fun moveLeft() {
         if (busy) return
         busy = true
         actionProgress = 0f
@@ -120,7 +120,7 @@ class Player private constructor() {
         )
     }
 
-    fun turnRight() {
+    fun rotateLeft() {
         if (busy) return
         busy = true
         actionProgress = 0f
@@ -133,7 +133,7 @@ class Player private constructor() {
         }
     }
 
-    fun turnLeft() {
+    fun rotateRight() {
         if (busy) return
         busy = true
         actionProgress = 0f

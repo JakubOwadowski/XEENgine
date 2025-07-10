@@ -1,6 +1,6 @@
 package xeengine.common.constants.global
 
-import xeengine.common.settings.enums.CameraEnum.FLUID
+import xeengine.common.settings.enums.SettingCameraEnum.FLUID
 import xeengine.common.settings.common.Settings
 
 object GlobalSettingsConstants {

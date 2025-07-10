@@ -12,7 +12,6 @@ import xeengine.common.globals.Globals
 import xeengine.visual.primitives.Map
 import xeengine.player.common.Player
 import xeengine.common.constants.global.GlobalDebugConstants.DEBUG_ENABLE
-import xeengine.common.constants.global.GlobalSettingsConstants.SETTING_ALLOW_INPUT_CHAINING
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_BOTTOM
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_LEFT
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_RIGHT
@@ -31,13 +30,12 @@ class Game : ApplicationAdapter() {
     private lateinit var modelBatch: ModelBatch
     private lateinit var environment: Environment
     private lateinit var debugger: Debugger
-
     private lateinit var map: Map
+    private lateinit var player: Player
 
-    private val instances = mutableListOf<ModelInstance>()
     private var isKeyPressed = false
 
-    private lateinit var player: Player
+    private val instances = mutableListOf<ModelInstance>()
 
     override fun create() {
         map = Globals.get().map
@@ -45,7 +43,7 @@ class Game : ApplicationAdapter() {
         modelBatch = ModelBatch()
         spriteBatch = SpriteBatch()
         environment = Environment()
-        environment.set(ColorAttribute.createAmbientLight(Color(100f, 100f, 100f, 1f)))
+        environment.set(ColorAttribute.createAmbientLight(Color.WHITE))
 
         debugger = Debugger()
 
@@ -62,11 +60,7 @@ class Game : ApplicationAdapter() {
 
     override fun render() {
         //update player
-        if (!player.busy) {
-            isKeyPressed = if (!SETTING_ALLOW_INPUT_CHAINING || (!isKeyPressed && SETTING_ALLOW_INPUT_CHAINING)) {
-                handleInput(player)
-            } else false
-        }
+        isKeyPressed = handleInput(player, isKeyPressed)
         player.update()
 
         //clear
@@ -98,7 +92,7 @@ class Game : ApplicationAdapter() {
         spriteBatch.end()
 
         //draw debug
-        if(DEBUG_ENABLE) {
+        if (DEBUG_ENABLE) {
             debugger.drawDebug(spriteBatch, player)
         }
 
@@ -111,9 +105,7 @@ class Game : ApplicationAdapter() {
         spriteBatch.dispose()
         skyTexture.dispose()
         debugger.dispose()
-        instances.forEach { instance ->
-            instance.model.dispose()
-        }
+        instances.forEach { instance -> instance.model.dispose() }
     }
 }
 

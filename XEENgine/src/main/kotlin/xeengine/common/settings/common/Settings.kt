@@ -1,13 +1,13 @@
 package xeengine.common.settings.common
 
 import com.badlogic.gdx.Input
-import xeengine.common.settings.enums.CameraEnum
+import xeengine.common.settings.enums.SettingCameraEnum
 import xeengine.common.settings.enums.SettingLanguageEnum
 
 class Settings {
     companion object {
         var language: SettingLanguageEnum = SettingLanguageEnum.ENGLISH
-        var camera: CameraEnum = CameraEnum.CLASSIC
+        var camera: SettingCameraEnum = SettingCameraEnum.FLUID
         var keyForward: Int = Input.Keys.W
         var keyBackward: Int = Input.Keys.S
         var keyMoveLeft: Int = Input.Keys.A
