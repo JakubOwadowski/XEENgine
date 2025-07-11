@@ -1,10 +1,10 @@
 package xeengine.maps.common
 
-import xeengine.visual.primitives.Map
+import xeengine.visual.primitives.GameMap
 import xeengine.utils.MapLoader
 import xeengine.utils.Coordinates
 
-val VERTIGO_CITY_MAP: Map = MapLoader.loadMap(
+val VERTIGO_CITY_MAP: GameMap = MapLoader.loadMap(
     "Vertigo",
     arrayOf("XEENgine/src/main/resources/maps/Vertigo.json"),
     32,

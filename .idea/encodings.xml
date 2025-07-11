@@ -5,5 +5,8 @@
     <file url="file://$PROJECT_DIR$/XEENgine/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/XEENgineMapParser/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/XEENgineMapParser/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/XEENgineModel/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/XEENgineModel/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/XEENgineModel/src/main/resources" charset="UTF-8" />
   </component>
 </project>

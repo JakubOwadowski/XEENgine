@@ -26,6 +26,7 @@ import xeengine.common.constants.global.GlobalDirectionsConstants.DIRECTION_NORT
 import xeengine.common.constants.global.GlobalDirectionsConstants.DIRECTION_SOUTH
 import xeengine.common.constants.global.GlobalDirectionsConstants.DIRECTION_WEST
 import xeengine.utils.Coordinates
+import xeengine.visual.primitives.Cell
 import kotlin.math.sin
 
 class Player private constructor() {
@@ -154,23 +155,43 @@ class Player private constructor() {
         if (state in arrayOf(WALKING_FORWARD, WALKING_BACKWARD, STRAFING_LEFT, STRAFING_RIGHT)) {
             actionProgress += delta / CAMERA_MOVING_TIME
 
+            //prohibit moving out of bonds
             if (
                 target.x < 0 ||
                 target.z < 0 ||
                 target.x / MAP_CELL_SIZE > map.height() - 1 ||
-                target.z / MAP_CELL_SIZE > map.width() - 1 ||
-                !map.getCell((target.x / MAP_CELL_SIZE).toInt(), 0, (target.z / MAP_CELL_SIZE).toInt()).passable) {
+                target.z / MAP_CELL_SIZE > map.width() - 1
+            ) {
                 state = STANDING
                 busy = false
                 return
             }
 
+            val xzPosition: Coordinates = getXZPosition()
+            val thisCell: Cell = map.getCell(xzPosition.x, 0, xzPosition.z)
+            val nextCell: Cell = map.getCell((target.x / MAP_CELL_SIZE).toInt(), 0, (target.z / MAP_CELL_SIZE).toInt())
+
+            //prohibit moving through blocked paths
+            if (
+                (target.z > position.z && (!thisCell.walls.north.passable || !nextCell.walls.north.passable)) ||
+                (target.z < position.z && (!thisCell.walls.south.passable || !nextCell.walls.south.passable)) ||
+                (target.x > position.x && (!thisCell.walls.west.passable || !nextCell.walls.west.passable)) ||
+                (target.x < position.x && (!thisCell.walls.east.passable || !nextCell.walls.east.passable))
+            ) {
+                state = STANDING
+                busy = false
+                return
+            }
+
+            //set new position
             position.set(position.cpy().lerp(target, actionProgress))
 
             if (actionProgress < 1f) {
+                //mid move
                 bobbingAmount =
                     sin((actionProgress * CAMERA_BOBBING_TIME * Math.PI.toFloat()).toDouble()) * CAMERA_BOBBING_HEIGHT
             } else {
+                //end move
                 position.set(target)
                 state = STANDING
                 busy = false
@@ -190,6 +211,7 @@ class Player private constructor() {
             }
         }
 
+        //update camera
         camera.position.set(
             position.x,
             (position.y + bobbingAmount).toFloat(),

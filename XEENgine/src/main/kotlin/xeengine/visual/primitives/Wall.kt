@@ -5,6 +5,7 @@ import xeengine.visual.models.HorizontalWallModel
 import xeengine.visual.textures.Textures
 
 class Wall {
-    var isPresent: Boolean = false
+    var present: Boolean = false
     var model: ModelInstance = ModelInstance(HorizontalWallModel(Textures.get("TEXTURE_WALL")).model)
+    var passable: Boolean = false
 }

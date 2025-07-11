@@ -2,80 +2,85 @@ package xeengine.visual.primitives
 
 import xeengine.visual.models.FloorModel
 import com.badlogic.gdx.graphics.g3d.ModelInstance
-import xeengine.common.constants.map.MapDimensionsConstants
 import xeengine.visual.models.RoofModel
 import xeengine.common.constants.global.GlobalCameraConstants.CAMERA_FLOOR_LEVEL
+import xeengine.common.constants.map.MapDimensionsConstants.MAP_CELL_SIZE
+import xeengine.common.constants.map.MapDimensionsConstants.MAP_WALL_HEIGHT
 import xeengine.visual.textures.Textures
 
 class Cell {
-    var walls = arrayOf<Wall>(
+    var walls: Walls = Walls(
         Wall(), //North
         Wall(), //West
         Wall(), //East
         Wall()  //South
     )
+
     var hasRoof: Boolean = false
     var hasFloor: Boolean = true
-    var passable = true
     var floorInstance = ModelInstance(FloorModel(Textures.get("TEXTURE_FLOOR")).model)
     var roofInstance = ModelInstance(RoofModel().model)
 
-
-
     fun draw(x: Int, y: Int, z: Int, instances: MutableList<ModelInstance>) {
-        val xCoordinate = x.toFloat() * MapDimensionsConstants.MAP_CELL_SIZE
-        val zCoordinate = z.toFloat() * MapDimensionsConstants.MAP_CELL_SIZE
-        val yCoordinate = y.toFloat() * MapDimensionsConstants.MAP_WALL_HEIGHT
+        val xCoordinate = x.toFloat() * MAP_CELL_SIZE
+        val zCoordinate = z.toFloat() * MAP_CELL_SIZE
+        val yCoordinate = y.toFloat() * MAP_WALL_HEIGHT
 
         if (hasFloor) {
             floorInstance.transform.setToTranslation(
                 xCoordinate,
                 CAMERA_FLOOR_LEVEL + yCoordinate,
-                zCoordinate)
+                zCoordinate
+            )
             instances.add(floorInstance)
         }
 
         if (hasRoof) {
             roofInstance.transform.setToTranslation(
                 xCoordinate,
-                MapDimensionsConstants.MAP_WALL_HEIGHT + yCoordinate,
-                zCoordinate)
+                MAP_WALL_HEIGHT + yCoordinate,
+                zCoordinate
+            )
             instances.add(roofInstance)
         }
 
-        if (walls[0].isPresent) {
-            val northRoofInstance = walls[0].model
+        if (walls.north.present) {
+            val northRoofInstance = walls.north.model
             northRoofInstance.transform.setToTranslation(
                 xCoordinate,
-                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
-                zCoordinate + MapDimensionsConstants.MAP_CELL_SIZE / 2)
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate + MAP_CELL_SIZE / 2
+            )
             instances.add(northRoofInstance)
         }
 
-        if (walls[1].isPresent) {
-            val westRoofInstance = walls[1].model
+        if (walls.west.present) {
+            val westRoofInstance = walls.west.model
             westRoofInstance.transform.setToTranslation(
-                xCoordinate + MapDimensionsConstants.MAP_CELL_SIZE / 2,
-                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
-                zCoordinate)
+                xCoordinate + MAP_CELL_SIZE / 2,
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate
+            )
             instances.add(westRoofInstance)
         }
 
-        if (walls[2].isPresent) {
-            val eastRoofInstance = walls[2].model
+        if (walls.east.present) {
+            val eastRoofInstance = walls.east.model
             eastRoofInstance.transform.setToTranslation(
-                xCoordinate - MapDimensionsConstants.MAP_CELL_SIZE / 2,
-                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
-                zCoordinate)
+                xCoordinate - MAP_CELL_SIZE / 2,
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate
+            )
             instances.add(eastRoofInstance)
         }
 
-        if (walls[3].isPresent) {
-            val southRoofInstance = walls[3].model
+        if (walls.south.present) {
+            val southRoofInstance = walls.south.model
             southRoofInstance.transform.setToTranslation(
                 xCoordinate,
-                MapDimensionsConstants.MAP_WALL_HEIGHT / 2 + yCoordinate,
-                zCoordinate - MapDimensionsConstants.MAP_CELL_SIZE / 2)
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate - MAP_CELL_SIZE / 2
+            )
             instances.add(southRoofInstance)
         }
     }

@@ -8,23 +8,26 @@
       },
       "floor": {
         "present": true,
-        "texture": "floors/floor.png"
+        "texture": "TEXTURE_FLOOR"
       },
       "walls": {
         "north": {
-          "present": false
+          "present": false,
+          "passable": true
         },
         "west": {
-          "present": false
+          "present": false,
+          "passable": true
         },
         "east": {
-          "present": false
+          "present": false,
+          "passable": true
         },
         "south": {
-          "present": false
+          "present": false,
+          "passable": true
         }
-      },
-      "passable": true
+      }
     },
     "0, 0, 0": {
       "roof": {
@@ -33,28 +36,30 @@
       },
       "floor": {
         "present": true,
-        "texture": "floors/floor.png"
+        "texture": "TEXTURE_FLOOR"
       },
       "walls": {
         "north": {
           "present": true,
-          "passable": false,
-          "texture": "TEXTURE_WALL"
+          "texture": "TEXTURE_WALL",
+          "passable": false
         },
         "west": {
           "present": true,
-          "texture": "TEXTURE_WALL"
+          "texture": "TEXTURE_WALL",
+          "passable": false
         },
         "east": {
           "present": true,
-          "texture": "TEXTURE_WALL"
+          "texture": "TEXTURE_WALL",
+          "passable": false
         },
         "south": {
           "present": true,
-          "texture": "TEXTURE_WALL"
+          "texture": "TEXTURE_WALL",
+          "passable": false
         }
-      },
-      "passable": false
+      }
     },
     "255, 0, 0": {
       "roof": {
@@ -63,23 +68,26 @@
       },
       "floor": {
         "present": true,
-        "texture": "floors/floor.png"
+        "texture": "TEXTURE_FLOOR"
       },
       "walls": {
         "north": {
-          "present": false
+          "present": false,
+          "passable": true
         },
         "west": {
-          "present": false
+          "present": false,
+          "passable": true
         },
         "east": {
-          "present": false
+          "present": false,
+          "passable": true
         },
         "south": {
-          "present": false
+          "present": false,
+          "passable": true
         }
-      },
-      "passable": true
+      }
     }
   }
 }

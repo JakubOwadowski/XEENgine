@@ -3,25 +3,17 @@ package xeengine.utils
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import xeengine.common.constants.map.MapObjectsConstants.EAST
-import xeengine.common.constants.map.MapObjectsConstants.FLOOR
-import xeengine.common.constants.map.MapObjectsConstants.NORTH
-import xeengine.common.constants.map.MapObjectsConstants.PASSABLE
-import xeengine.common.constants.map.MapObjectsConstants.PRESENT
-import xeengine.common.constants.map.MapObjectsConstants.ROOF
-import xeengine.common.constants.map.MapObjectsConstants.SOUTH
-import xeengine.common.constants.map.MapObjectsConstants.TEXTURE
-import xeengine.common.constants.map.MapObjectsConstants.WALLS
-import xeengine.common.constants.map.MapObjectsConstants.WEST
 import xeengine.visual.models.FloorModel
 import xeengine.visual.models.HorizontalWallModel
-import xeengine.visual.models.VerticalWallModel
 import xeengine.common.logger.Logger
+import xeengine.model.CellDataModel
+import xeengine.model.WallDataModel
+import xeengine.visual.models.VerticalWallModel
 import xeengine.visual.primitives.Cell
-import xeengine.visual.primitives.Map
+import xeengine.visual.primitives.GameMap
+import xeengine.visual.primitives.Wall
 import xeengine.visual.textures.Textures
 import java.io.File
-import kotlin.collections.get
 
 
 class MapLoader {
@@ -33,11 +25,11 @@ class MapLoader {
             height: Int,
             levels: Int,
             skybox: String
-        ): Map {
+        ): GameMap {
             Logger.gameLog("Loading map: $name", MapLoader::class)
-            val map = Map(name, width, height, levels, skybox)
+            val map = GameMap(name, width, height, levels, skybox)
             val gsonParser = Gson()
-            val type = object : TypeToken<kotlin.collections.Map<String, Any>>() {}
+            val type = object : TypeToken<Map<String, CellDataModel>>() {}
             val y = 0
 
             paths.forEach { path ->
@@ -47,65 +39,55 @@ class MapLoader {
                     val z = keySplit[0].toInt()
                     val x = keySplit[1].toInt()
                     val cell = Cell()
-                    val value = json[key] as kotlin.collections.Map<*, *>
+                    val cellData = json[key] as CellDataModel
 
-                    val roof = value[ROOF] as kotlin.collections.Map<*, *>
-                    if (roof[PRESENT] == true) {
-                        cell.hasRoof = true
+                    val roofData = cellData.roof
+                    if (roofData.present) {
                         cell.hasRoof = true
                     }
 
-                    val floor = value[FLOOR] as kotlin.collections.Map<*, *>
-                    if (floor[PRESENT] == true) {
-                        val textureName = floor[TEXTURE].toString()
+                    val floorData = cellData.floor
+                    if (floorData.present) {
+                        val textureName = floorData.texture.toString()
                         val texture = Textures.get(textureName)
                         cell.floorInstance = ModelInstance(FloorModel(texture).model)
                     }
 
-                    val passable = value[PASSABLE]
-                    if (passable == false) {
-                        cell.passable = false
-                    }
-
-                    val walls = value[WALLS] as kotlin.collections.Map<*, *>
-
-                    val northWall = walls[NORTH] as kotlin.collections.Map<*, *>
-                    if (northWall[PRESENT] == true) {
-                        cell.walls[0].isPresent = true
-                        val textureName = northWall[TEXTURE].toString()
-                        val texture = Textures.get(textureName)
-                        cell.walls[0].model = ModelInstance(HorizontalWallModel(texture).model)
-                    }
-
-                    val westWall = walls[WEST] as kotlin.collections.Map<*, *>
-                    if (westWall[PRESENT] == true) {
-                        cell.walls[1].isPresent = true
-                        val textureName = westWall[TEXTURE].toString()
-                        val texture = Textures.get(textureName)
-                        cell.walls[1].model = ModelInstance(VerticalWallModel(texture).model)
-                    }
-
-                    val eastWall = walls[EAST] as kotlin.collections.Map<*, *>
-                    if (eastWall[PRESENT] == true) {
-                        cell.walls[2].isPresent = true
-                        val textureName = eastWall[TEXTURE].toString()
-                        val texture = Textures.get(textureName)
-                        cell.walls[2].model = ModelInstance(VerticalWallModel(texture).model)
-                    }
-
-                    val southWall = walls[SOUTH] as kotlin.collections.Map<*, *>
-                    if (southWall[PRESENT] == true) {
-                        cell.walls[3].isPresent = true
-                        val textureName = southWall[TEXTURE].toString()
-                        val texture = Textures.get(textureName)
-                        cell.walls[3].model = ModelInstance(HorizontalWallModel(texture).model)
-                    }
+                    val wallsData = cellData.walls
+                    cell.walls.north = mapToWallHorizontal(wallsData.north)
+                    cell.walls.west = mapToWallVertical(wallsData.west)
+                    cell.walls.east = mapToWallVertical(wallsData.east)
+                    cell.walls.south = mapToWallHorizontal(wallsData.south)
 
                     map.setCell(x, y, z, cell)
                 }
             }
 
             return map
+        }
+
+        private fun mapToWallHorizontal(wallData: WallDataModel): Wall {
+            var wall = Wall()
+            wall.passable = wallData.passable
+            if (wallData.present) {
+                wall.present = true
+                val textureName = wallData.texture.toString()
+                val texture = Textures.get(textureName)
+                wall.model = ModelInstance(HorizontalWallModel(texture).model)
+            }
+            return wall
+        }
+
+        private fun mapToWallVertical(wallData: WallDataModel): Wall {
+            var wall = Wall()
+            wall.passable = wallData.passable
+            if (wallData.present) {
+                wall.present = true
+                val textureName = wallData.texture.toString()
+                val texture = Textures.get(textureName)
+                wall.model = ModelInstance(VerticalWallModel(texture).model)
+            }
+            return wall
         }
     }
 }

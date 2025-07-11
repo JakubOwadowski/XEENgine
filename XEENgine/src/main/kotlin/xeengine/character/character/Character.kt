@@ -1,6 +1,6 @@
 package xeengine.character.character
 
-import xeengine.visual.primitives.Map
+import xeengine.visual.primitives.GameMap
 import xeengine.character.defined.CharacterClasses
 import xeengine.character.defined.CharacterRaces
 import xeengine.character.defined.CharacterSexes
@@ -25,7 +25,7 @@ class Character {
     var skills: MutableList<CharacterSkills> = ArrayList()
     //awards
     //spells
-    var lloydMap: Map? = null
+    var lloydMap: GameMap? = null
     var lloydCoordinates: Coordinates = Coordinates(0, 0)
     //currentspell
     //quickoption

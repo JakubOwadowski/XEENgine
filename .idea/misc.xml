@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/XEENgine/pom.xml" />
         <option value="$PROJECT_DIR$/XEENgineMapParser/pom.xml" />
+        <option value="$PROJECT_DIR$/XEENgineModel/pom.xml" />
       </list>
     </option>
   </component>

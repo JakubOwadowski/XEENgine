@@ -2,7 +2,7 @@ package xeengine.visual.primitives
 
 import xeengine.utils.Coordinates
 
-class Map(
+class GameMap(
     val name: String,
     width: Int,
     height: Int,

@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import xeengine.common.constants.global.GlobalSettingsConstants.SETTING_ALLOW_INPUT_CHAINING
 import xeengine.player.common.Player
-import xeengine.visual.primitives.Map
+import xeengine.visual.primitives.GameMap
 import xeengine.common.settings.common.Settings
 
-fun generateMap(map: Map, instances: MutableList<ModelInstance>) {
+fun generateMap(map: GameMap, instances: MutableList<ModelInstance>) {
     for (y in map.getLevelIndices()) {
         for (x in map.getColumnIndices(y)) {
             for (z in map.getRowIndices(x, y)) {

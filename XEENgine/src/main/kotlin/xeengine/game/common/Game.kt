@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g3d.*
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import xeengine.common.globals.Globals
-import xeengine.visual.primitives.Map
+import xeengine.visual.primitives.GameMap
 import xeengine.player.common.Player
 import xeengine.common.constants.global.GlobalDebugConstants.DEBUG_ENABLE
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_BOTTOM
@@ -30,7 +30,7 @@ class Game : ApplicationAdapter() {
     private lateinit var modelBatch: ModelBatch
     private lateinit var environment: Environment
     private lateinit var debugger: Debugger
-    private lateinit var map: Map
+    private lateinit var map: GameMap
     private lateinit var player: Player
 
     private var isKeyPressed = false
