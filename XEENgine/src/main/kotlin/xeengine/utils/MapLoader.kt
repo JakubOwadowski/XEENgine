@@ -8,10 +8,9 @@ import xeengine.visual.models.HorizontalWallModel
 import xeengine.common.logger.Logger
 import xeengine.model.CellDataModel
 import xeengine.model.WallDataModel
+import xeengine.visual.models.BillboardModel
 import xeengine.visual.models.VerticalWallModel
-import xeengine.visual.primitives.Cell
-import xeengine.visual.primitives.GameMap
-import xeengine.visual.primitives.Wall
+import xeengine.visual.primitives.*
 import xeengine.visual.textures.Textures
 import java.io.File
 
@@ -51,9 +50,29 @@ class MapLoader {
                         val textureName = floorData.texture.toString()
                         val texture = Textures.get(textureName)
                         cell.floorInstance = ModelInstance(FloorModel(texture).model)
+                        cell.hasFloor = true
                     }
 
                     val wallsData = cellData.walls
+                    cell.walls.north = mapToWallHorizontal(wallsData.north)
+                    cell.walls.west = mapToWallVertical(wallsData.west)
+                    cell.walls.east = mapToWallVertical(wallsData.east)
+                    cell.walls.south = mapToWallHorizontal(wallsData.south)
+
+                    if (!cellData.ambientObjects.isNullOrEmpty()) {
+                        val ambientObjectsData = cellData.ambientObjects
+                        for (ambientObjectData in ambientObjectsData) {
+                            val ambientObject = AmbientObject()
+                            val textureName = ambientObjectData.texture
+                            val texture = Textures.get(textureName)
+                            ambientObject.model = ModelInstance(BillboardModel(texture).model)
+                            ambientObject.x = ambientObjectData.x
+                            ambientObject.z = ambientObjectData.z
+                            cell.ambientObjects += ambientObject
+                        }
+                    }
+
+                    val map3dObjectModel = cellData.map3dObjectModel
                     cell.walls.north = mapToWallHorizontal(wallsData.north)
                     cell.walls.west = mapToWallVertical(wallsData.west)
                     cell.walls.east = mapToWallVertical(wallsData.east)
@@ -67,7 +86,7 @@ class MapLoader {
         }
 
         private fun mapToWallHorizontal(wallData: WallDataModel): Wall {
-            var wall = Wall()
+            val wall = Wall()
             wall.passable = wallData.passable
             if (wallData.present) {
                 wall.present = true
@@ -79,7 +98,7 @@ class MapLoader {
         }
 
         private fun mapToWallVertical(wallData: WallDataModel): Wall {
-            var wall = Wall()
+            val wall = Wall()
             wall.passable = wallData.passable
             if (wallData.present) {
                 wall.present = true

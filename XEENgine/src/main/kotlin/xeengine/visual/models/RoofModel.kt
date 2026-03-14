@@ -3,12 +3,13 @@ package xeengine.visual.models
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.VertexAttributes.Usage
 import com.badlogic.gdx.graphics.g3d.Material
+import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import xeengine.common.constants.map.MapDimensionsConstants.MAP_CELL_SIZE
-import xeengine.common.globals.Globals
+import xeengine.common.cache.Cache
 
 class RoofModel(/*texture: TextureAttribute*/) {
-    val model = Globals.get().modelBuilder.createRect(
+    val model: Model = Cache.get().modelBuilder.createRect(
         -MAP_CELL_SIZE/2, 0f, -MAP_CELL_SIZE/2,
         MAP_CELL_SIZE/2, 0f, -MAP_CELL_SIZE/2,
         MAP_CELL_SIZE/2, 0f, MAP_CELL_SIZE/2,

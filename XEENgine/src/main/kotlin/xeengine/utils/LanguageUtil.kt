@@ -1,11 +1,11 @@
 package xeengine.utils
 
-import xeengine.common.globals.Globals
+import xeengine.common.cache.Cache
 
 class LanguageUtil {
     companion object {
         fun get(key: String): String {
-            var localisationValue = Globals.get().localisation[key]
+            var localisationValue = Cache.get().localisation[key]
             if (localisationValue == null) {
                 localisationValue = "Missing localisation!"
             }

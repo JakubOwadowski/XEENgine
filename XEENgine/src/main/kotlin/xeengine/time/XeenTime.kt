@@ -42,7 +42,7 @@ class XeenTime {
         }
 
         fun getHours(): String {
-            var result = ""
+            val result: String
 
             var hours = ((time / TIME_MINUTES_PER_HOUR) % TIME_HOURS_PER_DAY).toInt() + 1
             val minutes = (time % TIME_MINUTES_PER_HOUR).toInt()
@@ -50,8 +50,9 @@ class XeenTime {
             if (hours > 12) {
                 hours -= 12
                 result = hours.toString() + ":" + String.format("%02d", minutes) + "PM"
+            } else {
+                result = hours.toString() + ":" + String.format("%02d", minutes) + "AM"
             }
-            result = hours.toString() + ":" + String.format("%02d", minutes) + "AM"
 
             return result
         }

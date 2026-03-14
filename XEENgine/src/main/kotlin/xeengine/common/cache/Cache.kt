@@ -1,10 +1,8 @@
-package xeengine.common.globals
+package xeengine.common.cache
 
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import xeengine.maps.common.VERTIGO_CITY_MAP
 import xeengine.common.settings.common.Settings
@@ -14,29 +12,29 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import javax.xml.parsers.DocumentBuilderFactory
 
-class Globals private constructor() {
+class Cache private constructor() {
     val modelBuilder = ModelBuilder()
     val map = VERTIGO_CITY_MAP
     val version = getVersionFromPom()
-    val yamlMapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
+    private val yamlMapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
     lateinit var localisation: Map<String, String>
 
     companion object {
-        @Volatile private var instance: Globals? = null
+        @Volatile private var instance: Cache? = null
 
-        fun get(): Globals =
+        fun get(): Cache =
             instance ?: synchronized(this) {
-                instance ?: Globals().also { instance = it }
+                instance ?: Cache().also { instance = it }
             }
     }
 
     init {
-        Logger.initLog("Initialising globals", Globals::class)
+        Logger.initLog("Initialising cache", Cache::class)
         getLocalisation()
     }
 
     private fun getLocalisation() {
-        Logger.initLog("Loading localisation", Globals::class)
+        Logger.initLog("Loading localisation", Cache::class)
         val language = Settings.language
         val localisationDir = Paths.get("XEENgine/src/main/resources/localisation")
         val localisationMap = mutableMapOf<String, String>()
@@ -47,7 +45,7 @@ class Globals private constructor() {
                         path.fileName.toString().endsWith("-$language.yml")
             }
             .forEach { path ->
-                Logger.initLog("Reading localisation file: ${path.fileName}", Globals::class)
+                Logger.initLog("Reading localisation file: ${path.fileName}", Cache::class)
 
                 @Suppress("unchecked_cast")
                 val map = yamlMapper.readValue(

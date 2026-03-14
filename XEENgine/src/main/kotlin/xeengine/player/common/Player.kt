@@ -10,7 +10,7 @@ import xeengine.player.enums.PlayerStates.WALKING_FORWARD
 import xeengine.player.enums.PlayerStates.WALKING_BACKWARD
 import xeengine.player.enums.PlayerStates.STRAFING_RIGHT
 import xeengine.player.enums.PlayerStates.TURNING_RIGHT
-import xeengine.common.globals.Globals
+import xeengine.common.cache.Cache
 import xeengine.utils.Position
 import xeengine.time.XeenTime
 import xeengine.common.constants.global.GlobalCameraConstants.CAMERA_BOBBING_HEIGHT
@@ -31,13 +31,13 @@ import kotlin.math.sin
 
 class Player private constructor() {
     private val position = Position()
-    val facing = DIRECTION_NORTH.get()
+    private val facing = DIRECTION_NORTH.get()
     var camera: PerspectiveCamera
     var busy = false
-    var actionProgress = 0f
+    private var actionProgress = 0f
     private var state = STANDING
     private var target = Position()
-    private val map = Globals.get().map
+    private val map = Cache.get().map
 
     init {
         position.x = map.initCoordinates.x * MAP_CELL_SIZE
@@ -187,7 +187,7 @@ class Player private constructor() {
             position.set(position.cpy().lerp(target, actionProgress))
 
             if (actionProgress < 1f) {
-                //mid move
+                //mid-move
                 bobbingAmount =
                     sin((actionProgress * CAMERA_BOBBING_TIME * Math.PI.toFloat()).toDouble()) * CAMERA_BOBBING_HEIGHT
             } else {

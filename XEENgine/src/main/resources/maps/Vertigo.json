@@ -535,6 +535,12 @@
       "west": {
         "present": false,
         "passable": true
+      },
+      "map3dObjectModel": {
+        "northTexture": "TEXTURE_FLOOR",
+        "southTexture": "TEXTURE_FLOOR",
+        "eastTexture": "TEXTURE_FLOOR",
+        "westTexture": "TEXTURE_FLOOR"
       }
     }
   },
@@ -4265,7 +4271,14 @@
         "present": false,
         "passable": true
       }
-    }
+    },
+    "ambientObjects": [
+      {
+        "x": 1,
+        "z": 0,
+        "texture": "TEXTURE_FLOOR"
+      }
+    ]
   },
   "4, 16": {
     "roof": {
@@ -4367,8 +4380,9 @@
         "passable": true
       },
       "east": {
-        "present": false,
-        "passable": true
+        "present": true,
+        "passable": true,
+        "texture": "TEXTURE_DOORWAY"
       },
       "west": {
         "present": false,

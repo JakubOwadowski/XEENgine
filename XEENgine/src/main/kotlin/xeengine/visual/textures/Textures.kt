@@ -8,7 +8,8 @@ class Textures {
     companion object {
         private val textures = mapOf<String, TextureAttribute> (
             "TEXTURE_WALL" to getTextureAttribute("XEENgine/src/main/resources/sprites/walls/wall.png"),
-            "TEXTURE_FLOOR" to getTextureAttribute("XEENgine/src/main/resources/sprites/floors/floor.png")
+            "TEXTURE_FLOOR" to getTextureAttribute("XEENgine/src/main/resources/sprites/floors/floor.png"),
+            "TEXTURE_DOORWAY" to getTextureAttribute("XEENgine/src/main/resources/sprites/walls/doorway.png"),
         )
 
         private fun getTextureAttribute(texturePath: String): TextureAttribute {

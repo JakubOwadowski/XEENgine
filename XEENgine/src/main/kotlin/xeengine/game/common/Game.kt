@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g3d.*
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
-import xeengine.common.globals.Globals
+import xeengine.common.cache.Cache
 import xeengine.visual.primitives.GameMap
 import xeengine.player.common.Player
 import xeengine.common.constants.global.GlobalDebugConstants.DEBUG_ENABLE
@@ -22,6 +22,8 @@ import xeengine.game.debugger.Debugger
 import xeengine.game.utils.generateMap
 import xeengine.game.utils.handleInput
 import xeengine.common.logger.Logger
+import xeengine.game.utils.updateMap
+import xeengine.visual.primitives.common.TypedInstance
 
 class Game : ApplicationAdapter() {
     private lateinit var spriteBatch: SpriteBatch
@@ -35,10 +37,10 @@ class Game : ApplicationAdapter() {
 
     private var isKeyPressed = false
 
-    private val instances = mutableListOf<ModelInstance>()
+    private val instances = mutableListOf<TypedInstance>()
 
     override fun create() {
-        map = Globals.get().map
+        map = Cache.get().map
         Logger.initLog("Loaded map: ${map.name}", Game::class)
         modelBatch = ModelBatch()
         spriteBatch = SpriteBatch()
@@ -53,7 +55,7 @@ class Game : ApplicationAdapter() {
         skyTexture = Texture(map.skybox)
         frameTexture = Texture("XEENgine/src/main/resources/misc/frame.png")
 
-        generateMap(map, instances)
+        generateMap(map, instances, player)
 
         Gdx.input.inputProcessor = null
     }
@@ -62,6 +64,9 @@ class Game : ApplicationAdapter() {
         //update player
         isKeyPressed = handleInput(player, isKeyPressed)
         player.update()
+
+        //update map
+        updateMap(instances, player)
 
         //clear
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
@@ -80,7 +85,7 @@ class Game : ApplicationAdapter() {
 
         //draw environment
         modelBatch.begin(player.camera)
-        instances.forEach { modelBatch.render(it, environment) }
+        instances.forEach { modelBatch.render(it.instance, environment) }
         modelBatch.end()
 
         //set viewpoint
@@ -105,7 +110,7 @@ class Game : ApplicationAdapter() {
         spriteBatch.dispose()
         skyTexture.dispose()
         debugger.dispose()
-        instances.forEach { instance -> instance.model.dispose() }
+        instances.forEach { it.instance.model.dispose() }
     }
 }
 
