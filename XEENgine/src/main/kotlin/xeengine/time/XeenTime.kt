@@ -23,38 +23,34 @@ class XeenTime {
         }
 
         fun getMonth(): Int {
-            val daysInAMonth = TIME_HOURS_PER_DAY *
-                    TIME_MINUTES_PER_HOUR *
-                    TIME_NUMBER_OF_WEEKS *
-                    TIME_NUMBER_OF_MONTHS
+            val ticksPerMonth = TIME_MINUTES_PER_HOUR *
+                    TIME_HOURS_PER_DAY *
+                    TIME_NUMBER_OF_DAYS *
+                    TIME_NUMBER_OF_WEEKS
 
-            val month = ((time / daysInAMonth).toInt()) % TIME_NUMBER_OF_MONTHS + 1
-
-            return month
+            return ((time / ticksPerMonth).toInt()) % TIME_NUMBER_OF_MONTHS + 1
         }
 
         fun getWeek(): Int {
-            val daysInWeek = TIME_HOURS_PER_DAY *
-                    TIME_MINUTES_PER_HOUR *
-                    TIME_NUMBER_OF_MONTHS
+            val ticksPerWeek = TIME_MINUTES_PER_HOUR *
+                    TIME_HOURS_PER_DAY *
+                    TIME_NUMBER_OF_DAYS
 
-            return ((time / daysInWeek).toInt()) % TIME_NUMBER_OF_WEEKS + 1
+            return ((time / ticksPerWeek).toInt()) % TIME_NUMBER_OF_WEEKS + 1
         }
 
         fun getHours(): String {
-            val result: String
-
-            var hours = ((time / TIME_MINUTES_PER_HOUR) % TIME_HOURS_PER_DAY).toInt() + 1
+            val hour24 = ((time / TIME_MINUTES_PER_HOUR) % TIME_HOURS_PER_DAY).toInt()
             val minutes = (time % TIME_MINUTES_PER_HOUR).toInt()
 
-            if (hours > 12) {
-                hours -= 12
-                result = hours.toString() + ":" + String.format("%02d", minutes) + "PM"
-            } else {
-                result = hours.toString() + ":" + String.format("%02d", minutes) + "AM"
+            val isPM = hour24 >= 12
+            val hour12 = when {
+                hour24 == 0  -> 12           // midnight  → 12:xx AM
+                hour24 <= 12 -> hour24       // 1–12      → 1–12
+                else         -> hour24 - 12  // 13–23     → 1–11 PM
             }
 
-            return result
+            return "$hour12:${String.format("%02d", minutes)}${if (isPM) "PM" else "AM"}"
         }
 
         fun getDayOfMonth(): XeenDay {

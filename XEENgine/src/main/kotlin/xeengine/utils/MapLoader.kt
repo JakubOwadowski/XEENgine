@@ -1,5 +1,6 @@
 package xeengine.utils
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -12,7 +13,6 @@ import xeengine.visual.models.BillboardModel
 import xeengine.visual.models.VerticalWallModel
 import xeengine.visual.primitives.*
 import xeengine.visual.textures.Textures
-import java.io.File
 
 
 class MapLoader {
@@ -32,7 +32,7 @@ class MapLoader {
             val y = 0
 
             paths.forEach { path ->
-                val json = gsonParser.fromJson(File(path).readText(), type)
+                val json = gsonParser.fromJson(Gdx.files.internal(path).readString(), type)
                 json.keys.forEach { key ->
                     val keySplit = key.split(", ")
                     val z = keySplit[0].toInt()
@@ -59,8 +59,8 @@ class MapLoader {
                     cell.walls.east = mapToWallVertical(wallsData.east)
                     cell.walls.south = mapToWallHorizontal(wallsData.south)
 
-                    if (!cellData.ambientObjects.isNullOrEmpty()) {
-                        val ambientObjectsData = cellData.ambientObjects
+                    if (cellData.ambientObjects != null && cellData.ambientObjects!!.isNotEmpty()) {
+                        val ambientObjectsData = cellData.ambientObjects!!
                         for (ambientObjectData in ambientObjectsData) {
                             val ambientObject = AmbientObject()
                             val textureName = ambientObjectData.texture
@@ -72,11 +72,24 @@ class MapLoader {
                         }
                     }
 
+                    // Wire 3D object faces. N/S are horizontal quads; E/W are vertical.
                     val map3dObjectModel = cellData.map3dObjectModel
-                    cell.walls.north = mapToWallHorizontal(wallsData.north)
-                    cell.walls.west = mapToWallVertical(wallsData.west)
-                    cell.walls.east = mapToWallVertical(wallsData.east)
-                    cell.walls.south = mapToWallHorizontal(wallsData.south)
+                    if (map3dObjectModel != null) {
+                        cell.map3dObject = Map3dObject(
+                            north = Map3dWall(ModelInstance(
+                                    HorizontalWallModel(Textures.get(map3dObjectModel.northTexture)).model
+                            )),
+                            south = Map3dWall(ModelInstance(
+                                HorizontalWallModel(Textures.get(map3dObjectModel.southTexture)).model
+                            )),
+                            east = Map3dWall(ModelInstance(
+                                VerticalWallModel(Textures.get(map3dObjectModel.eastTexture)).model
+                            )),
+                            west = Map3dWall(ModelInstance(
+                                VerticalWallModel(Textures.get(map3dObjectModel.westTexture)).model
+                            ))
+                        )
+                    }
 
                     map.setCell(x, y, z, cell)
                 }

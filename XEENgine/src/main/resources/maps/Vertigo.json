@@ -4272,13 +4272,12 @@
         "passable": true
       }
     },
-    "ambientObjects": [
-      {
-        "x": 1,
-        "z": 0,
-        "texture": "TEXTURE_FLOOR"
-      }
-    ]
+    "map3dObjectModel": {
+      "northTexture": "TEXTURE_TENT_SIDE",
+      "southTexture": "TEXTURE_TENT_SIDE",
+      "eastTexture":  "TEXTURE_TENT_FRONT",
+      "westTexture":  "TEXTURE_TENT_SIDE"
+    }
   },
   "4, 16": {
     "roof": {

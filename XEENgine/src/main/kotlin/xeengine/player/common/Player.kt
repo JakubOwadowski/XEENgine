@@ -2,6 +2,7 @@ package xeengine.player.common
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.PerspectiveCamera
+import com.badlogic.gdx.math.Vector3
 import xeengine.common.constants.map.MapDimensionsConstants.MAP_CELL_SIZE
 import xeengine.player.enums.PlayerStates.STRAFING_LEFT
 import xeengine.player.enums.PlayerStates.TURNING_LEFT
@@ -34,6 +35,8 @@ class Player private constructor() {
     private val facing = DIRECTION_NORTH.get()
     var camera: PerspectiveCamera
     var busy = false
+
+    fun getFacing(): Vector3 = facing
     private var actionProgress = 0f
     private var state = STANDING
     private var target = Position()

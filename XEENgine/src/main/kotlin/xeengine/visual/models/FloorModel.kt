@@ -17,7 +17,6 @@ class FloorModel(texture: TextureAttribute) {
         -MAP_CELL_SIZE / 2f, 0f, MAP_CELL_SIZE / 2f,
         0f, 1f, 0f,
         Material(texture).apply {
-            set(BlendingAttribute(true, 1f))
             set(IntAttribute.createCullFace(IntAttribute.CullFace.toInt()))
         },
         (Usage.Position or Usage.Normal or Usage.TextureCoordinates).toLong()

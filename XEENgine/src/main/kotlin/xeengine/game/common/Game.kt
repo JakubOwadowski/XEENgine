@@ -12,6 +12,7 @@ import xeengine.common.cache.Cache
 import xeengine.visual.primitives.GameMap
 import xeengine.player.common.Player
 import xeengine.common.constants.global.GlobalDebugConstants.DEBUG_ENABLE
+import xeengine.common.constants.global.Paths
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_BOTTOM
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_LEFT
 import xeengine.common.constants.global.GlobalWindowConstants.WINDOW_OFFSET_RIGHT
@@ -53,7 +54,7 @@ class Game : ApplicationAdapter() {
         player.camera.update()
 
         skyTexture = Texture(map.skybox)
-        frameTexture = Texture("XEENgine/src/main/resources/misc/frame.png")
+        frameTexture = Texture(Paths.FRAME)
 
         generateMap(map, instances, player)
 
@@ -85,7 +86,7 @@ class Game : ApplicationAdapter() {
 
         //draw environment
         modelBatch.begin(player.camera)
-        instances.forEach { modelBatch.render(it.instance, environment) }
+        instances.forEach { if (it.visible) modelBatch.render(it.instance, environment) }
         modelBatch.end()
 
         //set viewpoint
@@ -113,4 +114,3 @@ class Game : ApplicationAdapter() {
         instances.forEach { it.instance.model.dispose() }
     }
 }
-

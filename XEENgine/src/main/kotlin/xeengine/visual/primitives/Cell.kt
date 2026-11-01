@@ -1,14 +1,11 @@
 package xeengine.visual.primitives
 
-import xeengine.visual.models.FloorModel
 import com.badlogic.gdx.graphics.g3d.ModelInstance
-import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.math.Vector3
-import xeengine.visual.models.RoofModel
 import xeengine.common.constants.global.GlobalCameraConstants.CAMERA_FLOOR_LEVEL
 import xeengine.common.constants.map.MapDimensionsConstants.MAP_CELL_SIZE
 import xeengine.common.constants.map.MapDimensionsConstants.MAP_WALL_HEIGHT
-import xeengine.player.common.Player
+import xeengine.visual.models.*
 import xeengine.visual.primitives.common.TypedInstance
 import xeengine.visual.primitives.enums.InstanceTypeEnum
 import xeengine.visual.textures.Textures
@@ -26,14 +23,9 @@ class Cell {
     var floorInstance = ModelInstance(FloorModel(Textures.get("TEXTURE_FLOOR")).model)
     var roofInstance = ModelInstance(RoofModel().model)
     var ambientObjects: List<AmbientObject> = ArrayList()
-    var map3dObject: Map3dObject = Map3dObject(
-        Map3dWall(), //North
-        Map3dWall(), //West
-        Map3dWall(), //East
-        Map3dWall()  //South
-    )
+    var map3dObject: Map3dObject? = null
 
-    fun draw(x: Int, y: Int, z: Int, instances: MutableList<TypedInstance>, player: Player) {
+    fun draw(x: Int, y: Int, z: Int, instances: MutableList<TypedInstance>) {
         val xCoordinate = x.toFloat() * MAP_CELL_SIZE
         val zCoordinate = z.toFloat() * MAP_CELL_SIZE
         val yCoordinate = y.toFloat() * MAP_WALL_HEIGHT
@@ -96,19 +88,58 @@ class Cell {
             instances.add(TypedInstance(southRoofInstance, InstanceTypeEnum.SOUTH_WALL, xCoordinate, zCoordinate))
         }
 
+        if (map3dObject != null) {
+            val e    = 0.75f
+            map3dObject!!.north.model.transform.setToTranslation(
+                xCoordinate,
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate + e)
+            map3dObject!!.south.model.transform.setToTranslation(
+                xCoordinate,
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate - e)
+            map3dObject!!.east.model.transform.setToTranslation(
+                xCoordinate - e,
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate)
+            map3dObject!!.west.model.transform.setToTranslation(
+                xCoordinate + e,
+                MAP_WALL_HEIGHT / 2 + yCoordinate,
+                zCoordinate)
 
-        val up = Vector3.Y
+            instances.add(TypedInstance(
+                map3dObject!!.north.model,
+                InstanceTypeEnum.MAP3D_NORTH,
+                xCoordinate,
+                zCoordinate))
+            instances.add(TypedInstance(
+                map3dObject!!.south.model,
+                InstanceTypeEnum.MAP3D_SOUTH,
+                xCoordinate, zCoordinate))
+            instances.add(TypedInstance(
+                map3dObject!!.east.model,
+                InstanceTypeEnum.MAP3D_EAST,
+                xCoordinate,
+                zCoordinate))
+            instances.add(TypedInstance(
+                map3dObject!!.west.model,
+                InstanceTypeEnum.MAP3D_WEST,
+                xCoordinate,
+                zCoordinate))
+        }
+
         for (ambientObject in ambientObjects) {
             val ambientObjectInstance = ambientObject.model
-            val pos = Vector3(xCoordinate + ambientObject.x, yCoordinate, zCoordinate + ambientObject.z)
-
-            val dir = Vector3(player.camera.position.x, pos.y, player.camera.position.z).sub(pos).nor()
-            val tmp = Matrix4().setToLookAt(dir, up)
-            tmp.setTranslation(pos)
-            ambientObjectInstance.transform.set(tmp)
-
-            val ambientInstance = TypedInstance(ambientObjectInstance, InstanceTypeEnum.AMBIENT, xCoordinate + ambientObject.x, zCoordinate + ambientObject.z)
-
+            val pos = Vector3(
+                xCoordinate + ambientObject.x,
+                yCoordinate,
+                zCoordinate + ambientObject.z)
+            ambientObjectInstance.transform.setToTranslation(pos)
+            val ambientInstance = TypedInstance(
+                ambientObjectInstance,
+                InstanceTypeEnum.AMBIENT,
+                xCoordinate + ambientObject.x,
+                zCoordinate + ambientObject.z)
             instances.add(ambientInstance)
         }
     }
